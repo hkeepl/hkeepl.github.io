@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /*.json$
+
+Sitemap: https://hkeepl.github.io/sitemap.xml
