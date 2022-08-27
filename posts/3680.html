@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/resources/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/resources/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/resources/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/resources/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hkeepl.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="生产者消费者模式生产者消费者模式：有一个生产者生产产品，这些产品提供给若干个消费者去消费，为了使生产者和消费者能够并发执行，在两者之间设置一个具有多个缓冲区的缓冲池，生产者将它生产的产品放到缓冲区中，消费者可以从缓冲区中取走产品进行消费，显然生产者和消费者之间需要保持同步。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生产者消费者模式">
+<meta property="og:url" content="http://hkeepl.github.io/posts/3680">
+<meta property="og:site_name" content="故乡">
+<meta property="og:description" content="生产者消费者模式生产者消费者模式：有一个生产者生产产品，这些产品提供给若干个消费者去消费，为了使生产者和消费者能够并发执行，在两者之间设置一个具有多个缓冲区的缓冲池，生产者将它生产的产品放到缓冲区中，消费者可以从缓冲区中取走产品进行消费，显然生产者和消费者之间需要保持同步。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-18T07:11:48.000Z">
+<meta property="article:modified_time" content="2022-08-27T08:17:43.887Z">
+<meta property="article:author" content="HeYin">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="设计模式">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://hkeepl.github.io/posts/3680.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://hkeepl.github.io/posts/3680","path":"posts/3680.html","title":"生产者消费者模式"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>生产者消费者模式 | 故乡</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="故乡" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">故乡</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">星辰大海</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">生产者消费者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E8%BF%9B%E7%A8%8B%EF%BC%89%E4%B8%8Bmutex%EF%BC%8Csemaphore%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.1.</span> <span class="nav-text">多线程（进程）下mutex，semaphore的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.2.1.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E8%BF%9B%E7%A8%8B"><span class="nav-number">1.2.2.</span> <span class="nav-text">多进程</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="HeYin"
+      src="/resources/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">HeYin</p>
+  <div class="site-description" itemprop="description">人生如有幽约在身，不敢怠慢。</div>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hkeepl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hkeepl" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hkeepl@outlook.com" title="E-Mail → mailto:hkeepl@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fas fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hkeepl.github.io/posts/3680">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/resources/images/avatar.jpg">
+      <meta itemprop="name" content="HeYin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="故乡">
+      <meta itemprop="description" content="人生如有幽约在身，不敢怠慢。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="生产者消费者模式 | 故乡">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          生产者消费者模式
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-06-18 15:11:48" itemprop="dateCreated datePublished" datetime="2020-06-18T15:11:48+08:00">2020-06-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-27 16:17:43" itemprop="dateModified" datetime="2022-08-27T16:17:43+08:00">2022-08-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="生产者消费者模式"><a href="#生产者消费者模式" class="headerlink" title="生产者消费者模式"></a>生产者消费者模式</h1><p>生产者消费者模式：有一个生产者生产产品，这些产品提供给若干个消费者去消费，为了使生产者和消费者能够并发执行，在两者之间设置一个具有多个缓冲区的缓冲池，生产者将它生产的产品放到缓冲区中，消费者可以从缓冲区中取走产品进行消费，显然生产者和消费者之间需要保持同步。</p>
+<span id="more"></span>
+
+<p>多线程之间的同步可以使用<code>mutex</code>，<code>semaphore</code>和<code>critical_section</code>。多进程之间同步可以使用<code>mutex</code>和<code>semaphore</code>。</p>
+<h2 id="多线程（进程）下mutex，semaphore的区别"><a href="#多线程（进程）下mutex，semaphore的区别" class="headerlink" title="多线程（进程）下mutex，semaphore的区别"></a>多线程（进程）下<code>mutex</code>，<code>semaphore</code>的区别</h2><table>
+<thead>
+<tr>
+<th><code>semaphore</code></th>
+<th>为了使一个信号从一个任务传到另一个任务。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>mutex</code></td>
+<td>使受保护的共享资源在每次任务中都是按照取得与释放的顺序进行。</td>
+</tr>
+</tbody></table>
+<p><code>semaphore</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/* Task 1 - Producer */</span><br><span class="line">semPost(sem_power_btn); // Send the signal</span><br><span class="line"></span><br><span class="line">/* Task 2 - Consumer */</span><br><span class="line">semPend(sem_power_btn); // Wait for signal</span><br></pre></td></tr></table></figure>
+
+<p>Is the number of free identical toilet keys. Example, say we have four toilets with identical locks and keys. The semaphore count - the count of keys - is set to 4 at beginning (all four toilets are free), then the count value is decremented as people are coming in. If all toilets are full, ie. there are no free keys left, the semaphore count is 0. Now, when eq. one person leaves the toilet, semaphore is increased to 1 (one free key), and given to the next person in the queue.</p>
+<p>信号量是一个自由的官方厕所钥匙，我们有四个厕所，他们的锁和钥匙是一样的。<br>信号量开始设置为4，表示4个厕所是自由滴，如果一个人进去了，数量就-1.<br>如果厕所满了，钥匙数目就为0，信号量数目这时也是0.如果一个人离开厕所，信号量+1，队列中的下一个人可以用啦！</p>
+<p><code>semaphore</code>是允许多个线程进入，访问互斥资源。除了多元信号量之外，还存在一种二元信号量。即只存在是与否，0与1两种状态。</p>
+<p><code>mutex</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/* Task 1 */</span><br><span class="line">mutexWait(mutex_mens_room);</span><br><span class="line">// Safely use shared resource</span><br><span class="line">mutexRelease(mutex_mens_room);</span><br><span class="line"></span><br><span class="line">/* Task 2 */</span><br><span class="line">mutexWait(mutex_mens_room);</span><br><span class="line">// Safely use shared resource</span><br><span class="line">mutexRelease(mutex_mens_room);</span><br></pre></td></tr></table></figure>
+
+<p>Is a key to a toilet. One person can have the key - occupy the toilet - at the time.<br>When finished, the person gives (frees) the key to the next person in the queue.</p>
+<p><code>mutex</code>是厕所钥匙，一次只能一人那着这把钥匙去厕所。结束了，这个人把钥匙给队列中的下一个人。</p>
+<p>它和二元信号量不同的是，占有和释放必须是同一个线程。比如互斥量M被线程A占有，那么释放的时候肯定也是A线程释放的。二元信号量则不必如此，一个二元信号量的占有和释放可以是不同线程。mutex是可以用于进程也可以用于线程的同步机制。</p>
+<p><code>critical_section</code>:</p>
+<p>耗费资源少，用于多线程之间的同步问题。</p>
+<h2 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h2><h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><ol>
+<li>一个生产者一个消费者一个缓冲区</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> std::cout;</span><br><span class="line"><span class="keyword">using</span> std::endl;</span><br><span class="line"></span><br><span class="line"><span class="function">DWORD WINAPI <span class="title">ProducerThread</span><span class="params">(LPVOID)</span></span>;</span><br><span class="line"><span class="function">DWORD WINAPI <span class="title">ConsumerThread</span><span class="params">(LPVOID)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> kProductNum = <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> g_buffer = <span class="number">0</span>;</span><br><span class="line">CRITICAL_SECTION g_criticalSection;</span><br><span class="line">HANDLE g_hEventBufEmpty;</span><br><span class="line">HANDLE g_hEventBufFull;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	::<span class="built_in">InitializeCriticalSection</span>(&amp;g_criticalSection);</span><br><span class="line">	g_hEventBufEmpty = ::<span class="built_in">CreateEvent</span>(<span class="literal">NULL</span>, FALSE, TRUE, <span class="literal">NULL</span>);</span><br><span class="line">	g_hEventBufFull = ::<span class="built_in">CreateEvent</span>(<span class="literal">NULL</span>, FALSE, FALSE, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">	<span class="type">const</span> <span class="type">int</span> kThreadNum = <span class="number">2</span>;</span><br><span class="line">	HANDLE threadHandle[kThreadNum];</span><br><span class="line">	threadHandle[<span class="number">0</span>] = <span class="built_in">CreateThread</span>(<span class="literal">NULL</span>, <span class="number">0</span>, ProducerThread, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line">	threadHandle[<span class="number">1</span>] = <span class="built_in">CreateThread</span>(<span class="literal">NULL</span>, <span class="number">0</span>, ConsumerThread, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line">	::<span class="built_in">WaitForMultipleObjects</span>(kThreadNum, threadHandle, TRUE, INFINITE);</span><br><span class="line"></span><br><span class="line">	::<span class="built_in">DeleteCriticalSection</span>(&amp;g_criticalSection);</span><br><span class="line">	::<span class="built_in">CloseHandle</span>(threadHandle[<span class="number">0</span>]);</span><br><span class="line">	::<span class="built_in">CloseHandle</span>(threadHandle[<span class="number">1</span>]);</span><br><span class="line">	::<span class="built_in">CloseHandle</span>(g_hEventBufFull);</span><br><span class="line">	::<span class="built_in">CloseHandle</span>(g_hEventBufEmpty);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">DWORD WINAPI <span class="title">ProducerThread</span><span class="params">(LPVOID p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= kProductNum; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		::<span class="built_in">WaitForSingleObject</span>(g_hEventBufEmpty, INFINITE);</span><br><span class="line">		<span class="built_in">EnterCriticalSection</span>(&amp;g_criticalSection);</span><br><span class="line">		g_buffer = i;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;生产者将数据 &quot;</span> &lt;&lt; g_buffer &lt;&lt; <span class="string">&quot; 放入缓冲区！&quot;</span> &lt;&lt; endl;</span><br><span class="line">		<span class="built_in">LeaveCriticalSection</span>(&amp;g_criticalSection);</span><br><span class="line">		::<span class="built_in">SetEvent</span>(g_hEventBufFull);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">DWORD WINAPI <span class="title">ConsumerThread</span><span class="params">(LPVOID p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= kProductNum; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		::<span class="built_in">WaitForSingleObject</span>(g_hEventBufFull, INFINITE);</span><br><span class="line">		<span class="built_in">EnterCriticalSection</span>(&amp;g_criticalSection);</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;\t\t\t\t消费者将数据 &quot;</span> &lt;&lt; g_buffer &lt;&lt; <span class="string">&quot; 从缓冲区取出！&quot;</span> &lt;&lt; endl;</span><br><span class="line">		<span class="built_in">LeaveCriticalSection</span>(&amp;g_criticalSection);</span><br><span class="line">		::<span class="built_in">SetEvent</span>(g_hEventBufEmpty);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>一个生产者多个消费者多个缓冲区</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> std::cout;</span><br><span class="line"><span class="keyword">using</span> std::endl;</span><br><span class="line"></span><br><span class="line"><span class="function">DWORD WINAPI <span class="title">ProducerThread</span><span class="params">(LPVOID)</span></span>;</span><br><span class="line"><span class="function">DWORD WINAPI <span class="title">ConsumerThread</span><span class="params">(LPVOID)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> kProductNum = <span class="number">10</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> kBufferSize = <span class="number">4</span>;</span><br><span class="line"><span class="type">int</span> g_buffer[kBufferSize] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">CRITICAL_SECTION g_criticalSection;</span><br><span class="line">HANDLE g_hEventBufEmpty;</span><br><span class="line">HANDLE g_hEventBufFull;</span><br><span class="line"><span class="type">int</span> g_i = <span class="number">0</span>, g_j = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	::<span class="built_in">InitializeCriticalSection</span>(&amp;g_criticalSection);</span><br><span class="line">	g_hEventBufEmpty = ::<span class="built_in">CreateSemaphore</span>(<span class="literal">NULL</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="literal">NULL</span>);</span><br><span class="line">	g_hEventBufFull = ::<span class="built_in">CreateSemaphore</span>(<span class="literal">NULL</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">	<span class="type">const</span> <span class="type">int</span> kThreadNum = <span class="number">3</span>;</span><br><span class="line">	HANDLE threadHandle[kThreadNum];</span><br><span class="line">	threadHandle[<span class="number">0</span>] = <span class="built_in">CreateThread</span>(<span class="literal">NULL</span>, <span class="number">0</span>, ProducerThread, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line">	threadHandle[<span class="number">1</span>] = <span class="built_in">CreateThread</span>(<span class="literal">NULL</span>, <span class="number">0</span>, ConsumerThread, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line">	threadHandle[<span class="number">2</span>] = <span class="built_in">CreateThread</span>(<span class="literal">NULL</span>, <span class="number">0</span>, ConsumerThread, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line">	::<span class="built_in">WaitForMultipleObjects</span>(kThreadNum, threadHandle, TRUE, INFINITE);</span><br><span class="line"></span><br><span class="line">	::<span class="built_in">DeleteCriticalSection</span>(&amp;g_criticalSection);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= kThreadNum; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		::<span class="built_in">CloseHandle</span>(threadHandle[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	::<span class="built_in">CloseHandle</span>(g_hEventBufFull);</span><br><span class="line">	::<span class="built_in">CloseHandle</span>(g_hEventBufEmpty);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">DWORD WINAPI <span class="title">ProducerThread</span><span class="params">(LPVOID p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= kProductNum; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		::<span class="built_in">WaitForSingleObject</span>(g_hEventBufEmpty, INFINITE);</span><br><span class="line">		<span class="built_in">EnterCriticalSection</span>(&amp;g_criticalSection);</span><br><span class="line">		</span><br><span class="line">		g_buffer[g_i] = i;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;生产者将数据 &quot;</span> &lt;&lt; <span class="string">&quot;(&quot;</span> &lt;&lt; g_i &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; g_buffer[g_i] &lt;&lt; <span class="string">&quot;) 放入缓冲区！&quot;</span> &lt;&lt; endl;</span><br><span class="line">		g_i = (g_i + <span class="number">1</span>) % kBufferSize;</span><br><span class="line">		</span><br><span class="line">		::<span class="built_in">LeaveCriticalSection</span>(&amp;g_criticalSection);</span><br><span class="line">		::<span class="built_in">ReleaseSemaphore</span>(g_hEventBufFull, <span class="number">1</span>, <span class="literal">NULL</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">DWORD WINAPI <span class="title">ConsumerThread</span><span class="params">(LPVOID p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= kProductNum; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		::<span class="built_in">WaitForSingleObject</span>(g_hEventBufFull, INFINITE);</span><br><span class="line">		<span class="built_in">EnterCriticalSection</span>(&amp;g_criticalSection);</span><br><span class="line"></span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;\t\t\t\t消费者 &quot;</span> &lt;&lt; ::<span class="built_in">GetCurrentThreadId</span>() &lt;&lt; <span class="string">&quot;: (&quot;</span> &lt;&lt; g_j &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; g_buffer[g_j] &lt;&lt; <span class="string">&quot;) 从缓冲区取出！&quot;</span> &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">if</span> (g_buffer[g_j] == kProductNum)</span><br><span class="line">		&#123;</span><br><span class="line">			::<span class="built_in">LeaveCriticalSection</span>(&amp;g_criticalSection);</span><br><span class="line">			::<span class="built_in">ReleaseSemaphore</span>(g_hEventBufFull, <span class="number">1</span>, <span class="literal">NULL</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		g_j = (g_j + <span class="number">1</span>) % kBufferSize;</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">LeaveCriticalSection</span>(&amp;g_criticalSection);</span><br><span class="line">		::<span class="built_in">ReleaseSemaphore</span>(g_hEventBufEmpty, <span class="number">1</span>, <span class="literal">NULL</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;\t\t\t\t消费者 &quot;</span> &lt;&lt; ::<span class="built_in">GetCurrentThreadId</span>() &lt;&lt; <span class="string">&quot; 退出！&quot;</span> &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h3><ul>
+<li>一个常驻进程，申请共享缓冲区（共享内存），初始化信号量和互斥量</li>
+<li>生产者进程，读取本地数据，写入共享缓冲区</li>
+<li>消费者进程，读取共享缓冲区数据，写到本地</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://github.com/hkeeplearning/LearningCpp/tree/master/LongRunProcess">实现</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/resources/images/alipay.png" alt="HeYin 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>HeYin
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://hkeepl.github.io/posts/3680" title="生产者消费者模式">http://hkeepl.github.io/posts/3680</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+              <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag"><i class="fa fa-tag"></i> 设计模式</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/21835" rel="prev" title="C++实现多维数组">
+                  <i class="fa fa-chevron-left"></i> C++实现多维数组
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/35242" rel="next" title="C++代码设计原则">
+                  C++代码设计原则 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HeYin</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"hkeepl/hkeepl.github.io","issue_term":"pathname","theme":"preferred-color-scheme","cdn":"https://utteranc.es/client.js"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

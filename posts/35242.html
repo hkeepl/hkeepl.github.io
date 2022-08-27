@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/resources/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/resources/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/resources/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/resources/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hkeepl.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="列举了代码编写的一些原则，遵守这些原则可以使大型项目的开发易于维护。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++代码设计原则">
+<meta property="og:url" content="http://hkeepl.github.io/posts/35242">
+<meta property="og:site_name" content="故乡">
+<meta property="og:description" content="列举了代码编写的一些原则，遵守这些原则可以使大型项目的开发易于维护。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-30T01:11:48.000Z">
+<meta property="article:modified_time" content="2022-08-27T08:17:43.887Z">
+<meta property="article:author" content="HeYin">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://hkeepl.github.io/posts/35242.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://hkeepl.github.io/posts/35242","path":"posts/35242.html","title":"C++代码设计原则"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>C++代码设计原则 | 故乡</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="故乡" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">故乡</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">星辰大海</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E5%90%8D%E5%AD%97%E7%A9%BA%E9%97%B4"><span class="nav-number">1.</span> <span class="nav-text">全局名字空间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E6%95%B0%E6%8D%AE"><span class="nav-number">1.1.</span> <span class="nav-text">全局数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E7%94%B1%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">自由函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%9A%E4%B8%BE%EF%BC%8Ctypedef%E5%92%8C%E5%B8%B8%E9%87%8F%E6%95%B0%E6%8D%AE"><span class="nav-number">1.3.</span> <span class="nav-text">枚举，typedef和常量数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E5%A4%84%E7%90%86%E5%AE%8F"><span class="nav-number">1.4.</span> <span class="nav-text">预处理宏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E5%90%8D%E5%AD%97"><span class="nav-number">1.5.</span> <span class="nav-text">头文件中的名字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%85%E5%90%AB%E5%8D%AB%E5%93%A8"><span class="nav-number">1.6.</span> <span class="nav-text">包含卫哨</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="HeYin"
+      src="/resources/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">HeYin</p>
+  <div class="site-description" itemprop="description">人生如有幽约在身，不敢怠慢。</div>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hkeepl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hkeepl" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hkeepl@outlook.com" title="E-Mail → mailto:hkeepl@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fas fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hkeepl.github.io/posts/35242">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/resources/images/avatar.jpg">
+      <meta itemprop="name" content="HeYin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="故乡">
+      <meta itemprop="description" content="人生如有幽约在身，不敢怠慢。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="C++代码设计原则 | 故乡">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C++代码设计原则
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-06-30 09:11:48" itemprop="dateCreated datePublished" datetime="2020-06-30T09:11:48+08:00">2020-06-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-27 16:17:43" itemprop="dateModified" datetime="2022-08-27T16:17:43+08:00">2022-08-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>列举了代码编写的一些原则，遵守这些原则可以使大型项目的开发易于维护。</p>
+<span id="more"></span>
+
+<h2 id="全局名字空间"><a href="#全局名字空间" class="headerlink" title="全局名字空间"></a>全局名字空间</h2><h3 id="全局数据"><a href="#全局数据" class="headerlink" title="全局数据"></a>全局数据</h3><p>将全局变量非全局化：</p>
+<ol>
+<li>将所有的全局变量放入一个结构中</li>
+<li>然后将他们私有化并添加静态访问函数</li>
+</ol>
+<p>如我们有下面的全局变量：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> size;</span><br><span class="line"><span class="type">double</span> scale;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span> *system;</span><br></pre></td></tr></table></figure>
+
+<p>可以这样修改：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 头文件中这样声明，记得要在源文件中定义这些静态成员变量</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Global</span> &#123;</span><br><span class="line">    <span class="type">static</span> <span class="type">int</span> s_size;</span><br><span class="line">    <span class="type">static</span> <span class="type">double</span> s_scale;</span><br><span class="line">    <span class="type">static</span> <span class="type">const</span> <span class="type">char</span> *s_system;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是，直接访问成员变量的方式会使维护大型系统的成本极为昂贵。而且，如果<code>s_size</code>是基于另外两个更原始的值计算得到的 (<code>s_width</code>, <code>s_height</code>)，直接暴露<code>s_size</code>也是不好的。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 单一状态</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Global</span> &#123;</span><br><span class="line">    <span class="type">static</span> <span class="type">int</span> s_size;</span><br><span class="line">    <span class="type">static</span> <span class="type">double</span> s_scale;</span><br><span class="line">    <span class="type">static</span> <span class="type">const</span> <span class="type">char</span> *s_system;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">Global</span>();</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// MANIPULAORS</span></span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">setSize</span><span class="params">(<span class="type">int</span> size)</span> </span>&#123;s_size = size;&#125;</span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">setScale</span><span class="params">(<span class="type">double</span> scale)</span> </span>&#123;s_scale = scale;&#125;</span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">setSyetem</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *system)</span> </span>&#123;s_system = system;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// ACCESSORS</span></span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">int</span> <span class="title">getSize</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> s_size;&#125;</span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">double</span> <span class="title">getScale</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> s_scale;&#125;</span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">const</span> <span class="type">char</span> *<span class="title">getSystem</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> s_system;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="自由函数"><a href="#自由函数" class="headerlink" title="自由函数"></a>自由函数</h3><blockquote>
+<p>避免在.h文件的文件作用域内使用自由函数（运算符函数除外）；</p>
+<p>在.c文件中避免使用带有外部链接的自由函数（包括运算符函数）</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">getMonitorResolution</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">setSystemScale</span><span class="params">(<span class="type">double</span> scaleFactor)</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">isPasswordCorrect</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *usr, cong <span class="type">char</span> *pwd)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fine</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">SysUtil</span> &#123;</span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">int</span> <span class="title">getMonitorResolution</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">setSystemScale</span><span class="params">(<span class="type">double</span> scaleFactor)</span></span>;</span><br><span class="line">	<span class="function"><span class="type">static</span> <span class="type">int</span> <span class="title">isPasswordCorrect</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *usr, cong <span class="type">char</span> *pwd)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="枚举，typedef和常量数据"><a href="#枚举，typedef和常量数据" class="headerlink" title="枚举，typedef和常量数据"></a>枚举，typedef和常量数据</h3><p>枚举类型，typedef和文件作用域常量数据都有内部链接，人们经常在头文件的问阿金作用域内声明常量，枚举或typedef。但，这是错误的！</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// paint.h</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Color</span> &#123;RED, GREEN, BLUE, ORANGE, YELLOW&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// juice.h</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Fruit</span> &#123;APPLE, ORANGE, GRAPE, CRANBERRY&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当这样包含时就会发生错误， ORANGE 有二义性</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;paint.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;juice.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;picture.h&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>如果在单独的类中定义这两个枚举，我们可以很容易地使用作用域解析消除二义性问题</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Paint</span> &#123;</span><br><span class="line">    <span class="keyword">enum</span> <span class="title class_">Color</span> &#123;RED, GREEN, BLUE, ORANGE, YELLOW&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Juice</span> &#123;</span><br><span class="line">    <span class="keyword">enum</span> <span class="title class_">Fruit</span> &#123;APPLE, ORANGE, GRAPE, CRANBERRY&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>基于类似的原因，typedef和常量数据，也可以放在头文件的类作用域内。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// array.h</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">String</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Array</span> &#123;</span><br><span class="line">    <span class="keyword">enum</span> &#123;DEFAULT_SIZE = <span class="number">100</span>&#125;;</span><br><span class="line">    <span class="type">static</span> <span class="type">const</span> <span class="type">double</span> DEFAULT_VALUE;</span><br><span class="line">    <span class="type">static</span> <span class="type">const</span> String DEFAULT_NAME;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// array.c</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;array.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;str.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">double</span> Array::DEFAULT_VALUE = <span class="number">0.0</span>;</span><br><span class="line">String Array::DEFAULT_NAME = <span class="string">&quot;111&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="预处理宏"><a href="#预处理宏" class="headerlink" title="预处理宏"></a>预处理宏</h3><p>好的地方：</p>
+<ol>
+<li>包含卫哨</li>
+<li>在.c文件中（用于可移植或调试）</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// theircode.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> GOOD 0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// ourcode.c</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;theircode.h&quot;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">OurClass::aFunction</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">enum</span> &#123;BAD = <span class="number">-1</span>, GOOD = <span class="number">0</span>&#125; status = GOOD;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> status;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该段代码会：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">OurClass::aFunction</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">enum</span> &#123;BAD = <span class="number">-1</span>, <span class="number">0</span> = <span class="number">0</span>&#125; status = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> status;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因此，就是弹出Syntax Error（语法错误）。</p>
+<h3 id="头文件中的名字"><a href="#头文件中的名字" class="headerlink" title="头文件中的名字"></a>头文件中的名字</h3><blockquote>
+<p>在一个.h文件作用域中，只应该声明类，结构体，联合体，和自由运算符函数</p>
+<p>在.h文件作用域中只应该定义类，结构体，联合体的内联成员函数和自由运算符函数</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PI 3.1415926						<span class="comment">// avoid</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MIN(X, Y) ((X) &lt; (Y)) ? (X) : (Y)	<span class="comment">// avoid</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DriverInit</span>;							<span class="comment">// fine</span></span><br><span class="line"><span class="keyword">union</span> <span class="title class_">Uaw</span>;									<span class="comment">// fine</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> globalVariable;					<span class="comment">// avoid</span></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> fileScopeVariable;				<span class="comment">// avoid</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> BUFFER_SIZE = <span class="number">256</span>;				<span class="comment">// avoid</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Boolean</span> &#123;ZERO, ONE&#125;;					<span class="comment">// avoid</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> BigInt;						<span class="comment">// avoid</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Driver</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">enum</span> <span class="title class_">Color</span></span><br><span class="line">	&#123;</span><br><span class="line">		RED,</span><br><span class="line">		GREEN,</span><br><span class="line">	&#125;;										<span class="comment">// fine</span></span><br><span class="line">	<span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(Driver::*PMF)</span><span class="params">()</span></span>;			<span class="comment">// fine</span></span><br><span class="line">	<span class="type">static</span> <span class="type">int</span> s_cont;						<span class="comment">// fine</span></span><br><span class="line">	<span class="type">int</span> d_size;								<span class="comment">// fine</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">Pnt</span> &#123;</span><br><span class="line">		<span class="type">short</span> <span class="type">int</span> x, y;</span><br><span class="line">		<span class="built_in">Pnt</span>(<span class="type">int</span> x_, <span class="type">int</span> y_) : </span><br><span class="line">			<span class="built_in">x</span>(x_), <span class="built_in">y</span>(y_) &#123;&#125;</span><br><span class="line">	&#125;;										<span class="comment">// fine</span></span><br><span class="line">	<span class="keyword">friend</span> DriverInit;						<span class="comment">// fine</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">static</span> <span class="type">int</span> <span class="title">round</span><span class="params">(<span class="type">double</span> d)</span></span>;				<span class="comment">// fine</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">setSize</span><span class="params">(<span class="type">int</span> size)</span></span>;					<span class="comment">// fine</span></span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">cmp</span><span class="params">(<span class="type">const</span> Driver &amp;)</span> <span class="type">const</span></span>;			<span class="comment">// fine</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="keyword">class</span> <span class="title class_">DriverInit</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// ....</span></span><br><span class="line">&#125; driverInit;								<span class="comment">// special case</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">min</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>;						<span class="comment">// avoid</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">max</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x &gt; y ? x : y;</span><br><span class="line">&#125;											<span class="comment">// avoid</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Driver::setSize</span><span class="params">(<span class="type">int</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	d_size = size;</span><br><span class="line">&#125;											<span class="comment">// fine</span></span><br><span class="line"></span><br><span class="line">ostream &amp;<span class="keyword">operator</span>&lt;&lt;(ostream &amp;o, <span class="type">const</span> Driver &amp;d);</span><br><span class="line">											<span class="comment">// fine</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="包含卫哨"><a href="#包含卫哨" class="headerlink" title="包含卫哨"></a>包含卫哨</h3>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/resources/images/alipay.png" alt="HeYin 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>HeYin
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://hkeepl.github.io/posts/35242" title="C++代码设计原则">http://hkeepl.github.io/posts/35242</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/3680" rel="prev" title="生产者消费者模式">
+                  <i class="fa fa-chevron-left"></i> 生产者消费者模式
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/14845" rel="next" title="常用设计模式">
+                  常用设计模式 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HeYin</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"hkeepl/hkeepl.github.io","issue_term":"pathname","theme":"preferred-color-scheme","cdn":"https://utteranc.es/client.js"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

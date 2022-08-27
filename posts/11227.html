@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/resources/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/resources/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/resources/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/resources/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hkeepl.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Qt是一个非常优秀的跨平台C++应用程序开发工具包，CMake&#x2F;CPack 是一款非常出色的C++应用程序构建系统（基本上目前也已经成为C++构建系统的标准了）。它们两个可以很好的结合在一起，而且我在很多项目中也已经使用了它们。然而，使用CPack部署包含Qt的项目，却并非易事。这篇文章将描述我是怎么尝试解决这个问题的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在CPack中使用windeployqt">
+<meta property="og:url" content="http://hkeepl.github.io/posts/11227">
+<meta property="og:site_name" content="故乡">
+<meta property="og:description" content="Qt是一个非常优秀的跨平台C++应用程序开发工具包，CMake&#x2F;CPack 是一款非常出色的C++应用程序构建系统（基本上目前也已经成为C++构建系统的标准了）。它们两个可以很好的结合在一起，而且我在很多项目中也已经使用了它们。然而，使用CPack部署包含Qt的项目，却并非易事。这篇文章将描述我是怎么尝试解决这个问题的。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-23T00:56:48.000Z">
+<meta property="article:modified_time" content="2022-08-27T08:17:43.891Z">
+<meta property="article:author" content="HeYin">
+<meta property="article:tag" content="CPack">
+<meta property="article:tag" content="Qt">
+<meta property="article:tag" content="windeployqt">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://hkeepl.github.io/posts/11227.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://hkeepl.github.io/posts/11227","path":"posts/11227.html","title":"在CPack中使用windeployqt"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>在CPack中使用windeployqt | 故乡</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="故乡" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">故乡</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">星辰大海</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-number">1.</span> <span class="nav-text">一个简单的例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E%E9%97%AE%E9%A2%98%E5%9C%A8%E5%93%AA%E9%87%8C"><span class="nav-number">2.</span> <span class="nav-text">说明问题在哪里</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#windeployqt"><span class="nav-number">3.</span> <span class="nav-text">windeployqt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8D%E7%84%B6%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">仍然存在的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="HeYin"
+      src="/resources/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">HeYin</p>
+  <div class="site-description" itemprop="description">人生如有幽约在身，不敢怠慢。</div>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hkeepl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hkeepl" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hkeepl@outlook.com" title="E-Mail → mailto:hkeepl@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fas fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hkeepl.github.io/posts/11227">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/resources/images/avatar.jpg">
+      <meta itemprop="name" content="HeYin">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="故乡">
+      <meta itemprop="description" content="人生如有幽约在身，不敢怠慢。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="在CPack中使用windeployqt | 故乡">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在CPack中使用windeployqt
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-23 08:56:48" itemprop="dateCreated datePublished" datetime="2022-07-23T08:56:48+08:00">2022-07-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-27 16:17:43" itemprop="dateModified" datetime="2022-08-27T16:17:43+08:00">2022-08-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>Qt是一个非常优秀的跨平台C++应用程序开发工具包，CMake&#x2F;CPack 是一款非常出色的C++应用程序构建系统（基本上目前也已经成为C++构建系统的标准了）。它们两个可以很好的结合在一起，而且我在很多项目中也已经使用了它们。然而，使用CPack部署包含Qt的项目，却并非易事。这篇文章将描述我是怎么尝试解决这个问题的。</p>
+<span id="more"></span>
+
+<h2 id="一个简单的例子"><a href="#一个简单的例子" class="headerlink" title="一个简单的例子"></a>一个简单的例子</h2><p>在准备应用程序安装包时，CPack构建默认目标，并且捆绑install命令指示的文件。比如下面的可执行程序：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">add_executable</span>(myapp WIN32 main.cpp)</span><br><span class="line"><span class="keyword">install</span>(TARGETS myapp DESTINATION bin)</span><br></pre></td></tr></table></figure>
+
+<p>在基于Unix的平台下，上述命令会执行：生成myapp的可执行文件，然后将它拷贝到<code>/usr/local/bin</code>目录下。在Windows中，类似地，生成myapp可执行文件，然后会将它拷贝到<code>$&#123;CMAKE_INSTALL_PREFIX&#125;/bin</code>目录中。</p>
+<p>如果我们添加CPack命令，并且在命令行中调用下面的命令，便可以生成一个应用程序安装包了（前提：安装了NSIS）:</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">add_executable</span>(myapp WIN32 main.cpp)</span><br><span class="line"><span class="keyword">install</span>(TARGETS myapp DESTINATION bin)</span><br><span class="line"><span class="keyword">include</span>(CPack)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cpack -G NSIS</span><br></pre></td></tr></table></figure>
+
+<h2 id="说明问题在哪里"><a href="#说明问题在哪里" class="headerlink" title="说明问题在哪里"></a>说明问题在哪里</h2><p>这里有一个小问题，上面生成的应用程序安装包中只是包含了编译生成的可执行文件，并没有用用程序运行时需要的任何库文件。比如，如果使用Visual C++编译的应用程序，MSVC的运行库就没有包含在安装包中；如果应用程序开发时使用了Qt，Qt的运行时库，平台插件等也没有包含在安装包中。</p>
+<p>CMake对MSVC的运行时库以<code>InstallRequiredSystemLibraries</code>的方式提供了解决方案：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果应用程序使用Visual Studio 2015或者更新的版本</span></span><br><span class="line"><span class="keyword">set</span>(CMAKE_INSTALL_UCRT_LIBRARIES <span class="keyword">TRUE</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span>(InstallRequiredSystemLibraries)</span><br></pre></td></tr></table></figure>
+
+<p>但是这并没有解决Qt的问题。</p>
+<h2 id="windeployqt"><a href="#windeployqt" class="headerlink" title="windeployqt"></a>windeployqt</h2><p><a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/windows-deployment.html">windeployqt</a>是Qt提供的一个简化应用程序安装的工具，只需要将应用程序的完整路径传递给windeployqt，windeployqt就会将所有的依赖库，插件等相关的依赖文件拷贝到应用程序所在的目录中：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">windeployqt <span class="built_in">path</span>/to/myapp.exe</span><br></pre></td></tr></table></figure>
+
+<p>将这个过程集成到CMake中尽管有些复杂，但也是可行的。首先需要获得windeployqt的绝对路径，它和qmake在相同的目录下，所以我们可以通过下面的命令获取windeployqt的绝对路径：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># find_package(Qt5Core REQUIRED)</span></span><br><span class="line"><span class="keyword">get_target_property</span>(QMAKE_EXECUTABLE_ABS_PATH Qt5::make IMPORTED_LOCATION)</span><br><span class="line"><span class="keyword">get_filename_component</span>(QT_BIN_DIR <span class="string">&quot;$&#123;QMAKE_EXECUTABLE_ABS_PATH&#125;&quot;</span> DIRECTORY)</span><br><span class="line"><span class="keyword">find_program</span>(WINDEPLOYQT_EXECUTABLE windeployqt HINTS <span class="string">&quot;$&#123;QT_BIN_DIR&#125;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>然后通过一个自定义命令就可以在CMake中调用windeployqt了：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">add_custom_command</span>(<span class="keyword">TARGET</span> myapp POST_BUILD</span><br><span class="line">    <span class="keyword">COMMAND</span> <span class="string">&quot;$&#123;CMAKE_COMMAND&#125;&quot;</span> -E </span><br><span class="line">        env PATH=<span class="string">&quot;$&#123;QT_BIN_DIR&#125;&quot;</span> <span class="string">&quot;$&#123;WINDEPLOYQT_EXECUTABLE&#125;&quot;</span></span><br><span class="line">            --verbose <span class="number">0</span></span><br><span class="line">            --no-compiler-runtime</span><br><span class="line">            \<span class="string">&quot;$&lt;TARGET_FILE:myapp&gt;\&quot;</span></span><br><span class="line"><span class="string">    COMMENT &quot;</span>Deploying Qt...<span class="string">&quot;)</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ol>
+<li><code>env</code>：是为了使windeployqt能够找到Qt的依赖文件；</li>
+<li><code>--no-compiler-runtime</code>：因为Qt在部署编译器运行时存在问题，所以这里使用这个选项禁用了使用windeployqt安装编译器运行时，使用CMake的InstallRequiredSystemLibraries 代替。</li>
+</ol>
+<h2 id="仍然存在的问题"><a href="#仍然存在的问题" class="headerlink" title="仍然存在的问题"></a>仍然存在的问题</h2><p>然而，经过上面的优化，仍然不能解决最开始的问题，应用程序依赖的Qt文件仍然不能包含在CPack调用中。因为，只有显示使用了install命令安装的文件才能被包含在CPack的调用中。这看似是一个不可逾越的问题：如何在构建应用程序之前，即应用程序不存在的时候，通过install()创建对这个应用程序依赖的安装。</p>
+<p>解决这个问题的第一步，我们在调用windeployqt时，传递一些具体的参数：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">windeployqt --dry-run --list mapping <span class="built_in">path</span>/to/myapp.exe</span><br></pre></td></tr></table></figure>
+
+<p>这会改变windeployqt工具的行为，它只是打印出来了应用程序依赖的具体文件和相对路径，并不会拷贝这些文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;C:\Qt\5.15.2\msvc2019_64\bin\Qt5Cored.dll&quot; &quot;Qt5Cored.dll&quot;</span><br><span class="line">&quot;C:\Qt\5.15.2\msvc2019_64\bin\Qt5Guid.dll&quot; &quot;Qt5Guid.dll&quot;</span><br><span class="line">&quot;C:\Qt\5.15.2\msvc2019_64\bin\Qt5Svgd.dll&quot; &quot;Qt5Svgd.dll&quot;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>看起来很有希望，有一个CMake命令可以捕获命令的输出——<code>execute_process()</code>，其实现可能类似于以下内容：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">execute_process</span>(<span class="keyword">COMMAND</span> <span class="string">&quot;$&#123;CMAKE_COMMAND&#125;&quot;</span> -E</span><br><span class="line">                    env PATH=<span class="string">&quot;$&#123;QT_BIN_DIR&#125;&quot;</span> <span class="string">&quot;$&#123;WINDEPLOYQT_EXECUTABLE&#125;&quot;</span></span><br><span class="line">                        --dry-run</span><br><span class="line">                        --<span class="keyword">list</span> mapping</span><br><span class="line">                        --no-compiler-runtime</span><br><span class="line">                        \<span class="string">&quot;$&lt;TARGET_FILE:myapp&gt;\&quot;</span></span><br><span class="line"><span class="string">                OUTPUT_VARIABLE _output</span></span><br><span class="line"><span class="string">                OUTPUT_STRIP_TRAILING_WHITESPACE)</span></span><br></pre></td></tr></table></figure>
+
+<p>这个命令需要在应用程序构建之后执行，因为windeployqt需要检查可执行文件本身以确定需要部署哪些文件。<code>install(CODE)</code>好像是可以执行这个命令的合适地方：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">install</span>(CODE <span class="string">&quot;execute_process(...)&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>备注：最新版的CMake，在install，execute_process命令中已经支持了生成表达式。</p>
+<p>完整的实现如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">function(windeployqt target directory)</span><br><span class="line"></span><br><span class="line">    # install 从3.12开始支持生成表达式</span><br><span class="line">    install(CODE</span><br><span class="line">        &quot;</span><br><span class="line">        execute_process(</span><br><span class="line">            COMMAND \&quot;$&#123;CMAKE_COMMAND&#125;\&quot; -E</span><br><span class="line">                env PATH=\&quot;$&#123;QT_BIN_DIR&#125;\&quot; \&quot;$&#123;WINDEPLOYQT_EXECUTABLE&#125;\&quot;</span><br><span class="line">                    --dry-run</span><br><span class="line">                    --no-compiler-runtime</span><br><span class="line">                    --no-angle</span><br><span class="line">                    --no-opengl-sw</span><br><span class="line">                    --list mapping</span><br><span class="line">                    \&quot;$&lt;TARGET_FILE:$&#123;target&#125;&gt;\&quot;</span><br><span class="line">            OUTPUT_VARIABLE _output</span><br><span class="line">            OUTPUT_STRIP_TRAILING_WHITESPACE</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        # 解析映射</span><br><span class="line">        separate_arguments(_files WINDOWS_COMMAND \$&#123;_output&#125;)</span><br><span class="line"></span><br><span class="line">        # 拷贝文件</span><br><span class="line">        while(_files)</span><br><span class="line">            list(GET _files 0 _src)</span><br><span class="line">            list(GET _files 1 _dest)</span><br><span class="line">            execute_process(</span><br><span class="line">                COMMAND \&quot;$&#123;CMAKE_COMMAND&#125;\&quot; -E</span><br><span class="line">                    copy \$&#123;_src&#125; \&quot;\$&#123;CMAKE_INSTALL_PREFIX&#125;/$&#123;directory&#125;/\$&#123;_dest&#125;\&quot;</span><br><span class="line">            )</span><br><span class="line">            list(REMOVE_AT _files 0 1)</span><br><span class="line">        endwhile()</span><br><span class="line">        &quot;</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">endfunction()</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>尽管有些困难，但将windeployqt集成到CPack中也是可以实现的。上面的实现方案可以确保在CPack创建安装程序时包含所有需要的文件。</p>
+<p>一个完整的实现例子<a target="_blank" rel="noopener" href="https://github.com/hkeeplearning/using-windeployqt-with-cpack.git">Using windeployqt with cpack</a>。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>-<a target="_blank" rel="noopener" href="https://blog.nathanosman.com/2017/11/24/using-windeployqt-with-cpack.html">Using windeployqt with CPack</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/resources/images/alipay.png" alt="HeYin 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>HeYin
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://hkeepl.github.io/posts/11227" title="在CPack中使用windeployqt">http://hkeepl.github.io/posts/11227</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/CPack/" rel="tag"><i class="fa fa-tag"></i> CPack</a>
+              <a href="/tags/Qt/" rel="tag"><i class="fa fa-tag"></i> Qt</a>
+              <a href="/tags/windeployqt/" rel="tag"><i class="fa fa-tag"></i> windeployqt</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/61860" rel="prev" title="使用CMake和VSCode开发C++">
+                  <i class="fa fa-chevron-left"></i> 使用CMake和VSCode开发C++
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/55693" rel="next" title="解决从GitHub上传代码总是失败的问题">
+                  解决从GitHub上传代码总是失败的问题 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HeYin</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"hkeepl/hkeepl.github.io","issue_term":"pathname","theme":"preferred-color-scheme","cdn":"https://utteranc.es/client.js"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>
