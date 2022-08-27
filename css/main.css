@@ -2965,6 +2965,15 @@ mjx-container[display='true'] + br {
 .post-meta {
   justify-content: left;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+/* 400正常，>400加粗，Bold对应700 */
+  font-weight: 600;
+}
 /* 选中字符颜色 */
 ::selection {
   background: highlight;
