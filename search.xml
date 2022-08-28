@@ -324,20 +324,24 @@
   <entry>
     <title>生产者消费者模式</title>
     <url>/posts/3680.html</url>
-    <content><![CDATA[<h1 id="生产者消费者模式"><a href="#生产者消费者模式" class="headerlink" title="生产者消费者模式"></a>生产者消费者模式</h1><p>生产者消费者模式：有一个生产者生产产品，这些产品提供给若干个消费者去消费，为了使生产者和消费者能够并发执行，在两者之间设置一个具有多个缓冲区的缓冲池，生产者将它生产的产品放到缓冲区中，消费者可以从缓冲区中取走产品进行消费，显然生产者和消费者之间需要保持同步。</p>
+    <content><![CDATA[<p>生产者消费者模式：有一个生产者生产产品，这些产品提供给若干个消费者去消费，为了使生产者和消费者能够并发执行，在两者之间设置一个具有多个缓冲区的缓冲池，生产者将它生产的产品放到缓冲区中，消费者可以从缓冲区中取走产品进行消费，显然生产者和消费者之间需要保持同步。</p>
 <span id="more"></span>
 
 <p>多线程之间的同步可以使用<code>mutex</code>，<code>semaphore</code>和<code>critical_section</code>。多进程之间同步可以使用<code>mutex</code>和<code>semaphore</code>。</p>
 <h2 id="多线程（进程）下mutex，semaphore的区别"><a href="#多线程（进程）下mutex，semaphore的区别" class="headerlink" title="多线程（进程）下mutex，semaphore的区别"></a>多线程（进程）下<code>mutex</code>，<code>semaphore</code>的区别</h2><table>
 <thead>
 <tr>
-<th><code>semaphore</code></th>
-<th>为了使一个信号从一个任务传到另一个任务。</th>
+<th align="center">项目</th>
+<th align="center">描述</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><code>mutex</code></td>
-<td>使受保护的共享资源在每次任务中都是按照取得与释放的顺序进行。</td>
+<td align="center"><code>semaphore</code></td>
+<td align="center">为了使一个信号从一个任务传到另一个任务。</td>
+</tr>
+<tr>
+<td align="center"><code>mutex</code></td>
+<td align="center">使受保护的共享资源在每次任务中都是按照取得与释放的顺序进行。</td>
 </tr>
 </tbody></table>
 <p><code>semaphore</code>:</p>
@@ -369,7 +373,6 @@
 <li>生产者进程，读取本地数据，写入共享缓冲区</li>
 <li>消费者进程，读取共享缓冲区数据，写到本地</li>
 </ul>
-<p><a href="https://github.com/hkeeplearning/LearningCpp/tree/master/LongRunProcess">实现</a></p>
 ]]></content>
       <tags>
         <tag>C++</tag>

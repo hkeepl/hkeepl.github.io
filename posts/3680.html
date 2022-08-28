@@ -21,15 +21,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hkeepl.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="生产者消费者模式生产者消费者模式：有一个生产者生产产品，这些产品提供给若干个消费者去消费，为了使生产者和消费者能够并发执行，在两者之间设置一个具有多个缓冲区的缓冲池，生产者将它生产的产品放到缓冲区中，消费者可以从缓冲区中取走产品进行消费，显然生产者和消费者之间需要保持同步。">
+    <meta name="description" content="生产者消费者模式：有一个生产者生产产品，这些产品提供给若干个消费者去消费，为了使生产者和消费者能够并发执行，在两者之间设置一个具有多个缓冲区的缓冲池，生产者将它生产的产品放到缓冲区中，消费者可以从缓冲区中取走产品进行消费，显然生产者和消费者之间需要保持同步。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="生产者消费者模式">
 <meta property="og:url" content="http://hkeepl.github.io/posts/3680">
 <meta property="og:site_name" content="故乡">
-<meta property="og:description" content="生产者消费者模式生产者消费者模式：有一个生产者生产产品，这些产品提供给若干个消费者去消费，为了使生产者和消费者能够并发执行，在两者之间设置一个具有多个缓冲区的缓冲池，生产者将它生产的产品放到缓冲区中，消费者可以从缓冲区中取走产品进行消费，显然生产者和消费者之间需要保持同步。">
+<meta property="og:description" content="生产者消费者模式：有一个生产者生产产品，这些产品提供给若干个消费者去消费，为了使生产者和消费者能够并发执行，在两者之间设置一个具有多个缓冲区的缓冲池，生产者将它生产的产品放到缓冲区中，消费者可以从缓冲区中取走产品进行消费，显然生产者和消费者之间需要保持同步。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-18T07:11:48.000Z">
-<meta property="article:modified_time" content="2022-08-28T07:59:09.837Z">
+<meta property="article:modified_time" content="2022-08-28T08:11:53.579Z">
 <meta property="article:author" content="HeYin">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="设计模式">
@@ -147,7 +147,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">生产者消费者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E8%BF%9B%E7%A8%8B%EF%BC%89%E4%B8%8Bmutex%EF%BC%8Csemaphore%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.1.</span> <span class="nav-text">多线程（进程）下mutex，semaphore的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.2.1.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E8%BF%9B%E7%A8%8B"><span class="nav-number">1.2.2.</span> <span class="nav-text">多进程</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E8%BF%9B%E7%A8%8B%EF%BC%89%E4%B8%8Bmutex%EF%BC%8Csemaphore%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.</span> <span class="nav-text">多线程（进程）下mutex，semaphore的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">2.1.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E8%BF%9B%E7%A8%8B"><span class="nav-number">2.2.</span> <span class="nav-text">多进程</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -240,7 +240,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-28 15:59:09" itemprop="dateModified" datetime="2022-08-28T15:59:09+08:00">2022-08-28</time>
+      <time title="修改时间：2022-08-28 16:11:53" itemprop="dateModified" datetime="2022-08-28T16:11:53+08:00">2022-08-28</time>
     </span>
 
   
@@ -253,20 +253,24 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="生产者消费者模式"><a href="#生产者消费者模式" class="headerlink" title="生产者消费者模式"></a>生产者消费者模式</h1><p>生产者消费者模式：有一个生产者生产产品，这些产品提供给若干个消费者去消费，为了使生产者和消费者能够并发执行，在两者之间设置一个具有多个缓冲区的缓冲池，生产者将它生产的产品放到缓冲区中，消费者可以从缓冲区中取走产品进行消费，显然生产者和消费者之间需要保持同步。</p>
+        <p>生产者消费者模式：有一个生产者生产产品，这些产品提供给若干个消费者去消费，为了使生产者和消费者能够并发执行，在两者之间设置一个具有多个缓冲区的缓冲池，生产者将它生产的产品放到缓冲区中，消费者可以从缓冲区中取走产品进行消费，显然生产者和消费者之间需要保持同步。</p>
 <span id="more"></span>
 
 <p>多线程之间的同步可以使用<code>mutex</code>，<code>semaphore</code>和<code>critical_section</code>。多进程之间同步可以使用<code>mutex</code>和<code>semaphore</code>。</p>
 <h2 id="多线程（进程）下mutex，semaphore的区别"><a href="#多线程（进程）下mutex，semaphore的区别" class="headerlink" title="多线程（进程）下mutex，semaphore的区别"></a>多线程（进程）下<code>mutex</code>，<code>semaphore</code>的区别</h2><table>
 <thead>
 <tr>
-<th><code>semaphore</code></th>
-<th>为了使一个信号从一个任务传到另一个任务。</th>
+<th align="center">项目</th>
+<th align="center">描述</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><code>mutex</code></td>
-<td>使受保护的共享资源在每次任务中都是按照取得与释放的顺序进行。</td>
+<td align="center"><code>semaphore</code></td>
+<td align="center">为了使一个信号从一个任务传到另一个任务。</td>
+</tr>
+<tr>
+<td align="center"><code>mutex</code></td>
+<td align="center">使受保护的共享资源在每次任务中都是按照取得与释放的顺序进行。</td>
 </tr>
 </tbody></table>
 <p><code>semaphore</code>:</p>
@@ -298,7 +302,6 @@
 <li>生产者进程，读取本地数据，写入共享缓冲区</li>
 <li>消费者进程，读取共享缓冲区数据，写到本地</li>
 </ul>
-<p><a target="_blank" rel="noopener" href="https://github.com/hkeeplearning/LearningCpp/tree/master/LongRunProcess">实现</a></p>
 
     </div>
 
