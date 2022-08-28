@@ -2965,6 +2965,15 @@ mjx-container[display='true'] + br {
 .post-meta {
   justify-content: left;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+/* 400正常，>400加粗，Bold对应700 */
+  font-weight: 600;
+}
 /* 选中字符颜色 */
 ::selection {
   background: highlight;
@@ -3068,7 +3077,7 @@ mjx-container[display='true'] + br {
 }
 /* 当前页码 */
 .pagination .page-number.current {
-  background: #239dc0;
+  background: #3f5973;
 }
 @media (prefers-color-scheme: dark) {
   .pagination .page-number.current {
