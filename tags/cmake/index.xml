@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>CMake on hkeepl&#39;s blog</title>
+    <link>https://hkeepl.github.io/tags/cmake/</link>
+    <description>Recent content in CMake on hkeepl&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 06 Jul 2022 15:35:21 +0000</lastBuildDate><atom:link href="https://hkeepl.github.io/tags/cmake/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CMake 备忘录</title>
+      <link>https://hkeepl.github.io/posts/420001/</link>
+      <pubDate>Wed, 06 Jul 2022 15:35:21 +0000</pubDate>
+      
+      <guid>https://hkeepl.github.io/posts/420001/</guid>
+      <description>CMake是个一个开源的跨平台自动化建构系统，用来管理软件建置的程序，并不依赖于某特定编译器，并可支持多层目录、多个应用程序与多个库。</description>
+    </item>
+    
+  </channel>
+</rss>
