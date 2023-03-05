@@ -1,651 +1,332 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh" dir="auto">
+
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+	<meta name="generator" content="Hugo 0.111.1"><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>hkeepl&#39;s blog</title>
+<meta name="keywords" content="blog, programming, c&#43;&#43;, matlab">
+<meta name="description" content="">
+<meta name="author" content="hkeepl">
+<link rel="canonical" href="https://hkeepl.github.io/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.6a98292fb8fa8cf0f3ba4042d4b75515c04267550f3ad49ff6271b5af9562443.css" integrity="sha256-apgpL7j6jPDzukBC1LdVFcBCZ1UPOtSf9icbWvlWJEM=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://hkeepl.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hkeepl.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hkeepl.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://hkeepl.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://hkeepl.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://hkeepl.github.io/index.xml">
+<link rel="alternate" type="application/json" href="https://hkeepl.github.io/index.json">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
 
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/resources/images/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/resources/images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/resources/images/favicon-16x16.png">
-  <link rel="mask-icon" href="/resources/images/logo.svg" color="#222">
+            .list {
+                background: var(--theme);
+            }
 
-<link rel="stylesheet" href="/css/main.css">
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
 
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
 
+    </style>
+</noscript><meta property="og:title" content="hkeepl&#39;s blog" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://hkeepl.github.io/" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="hkeepl&#39;s blog"/>
+<meta name="twitter:description" content=""/>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"hkeepl.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-
-    <meta name="description" content="人生如有幽约在身，不敢怠慢。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="故乡">
-<meta property="og:url" content="http://hkeepl.github.io/index.html">
-<meta property="og:site_name" content="故乡">
-<meta property="og:description" content="人生如有幽约在身，不敢怠慢。">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="HeYin">
-<meta property="article:tag" content="博客">
-<meta property="article:tag" content="hexo">
-<meta property="article:tag" content="hexo-theme-next">
-<meta property="article:tag" content="C++">
-<meta property="article:tag" content="MATLAB">
-<meta property="article:tag" content="Python">
-<meta property="article:tag" content="SCUT">
-<meta property="article:tag" content="图像">
-<meta property="article:tag" content="医疗">
-<meta property="article:tag" content="软件">
-<meta name="twitter:card" content="summary">
-
-
-<link rel="canonical" href="http://hkeepl.github.io/">
-
-
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>故乡</title>
-  
-
-
-
-
-
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-<link rel="alternate" href="/atom.xml" title="故乡" type="application/atom+xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "hkeepl's blog",
+  "url": "https://hkeepl.github.io/",
+  "description": "",
+  "thumbnailUrl": "https://hkeepl.github.io/favicon.ico",
+  "sameAs": [
+      
+  ]
+}
+</script>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="headband"></div>
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
 
-  <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
+</script>
 
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <h1 class="site-title">故乡</h1>
-      <i class="logo-line"></i>
-    </a>
-      <p class="site-subtitle" itemprop="description">星辰大海</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
-  </ul>
-</nav>
-
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup"><div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close" role="button">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div class="search-result-container no-result">
-  <div class="search-result-icon">
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-        
-  
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-overview-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hkeepl.github.io/" accesskey="h" title="hkeepl&#39;s blog (Alt + H)">hkeepl&#39;s blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
         </div>
-        <!--/noindex-->
+        <ul id="menu">
+            <li>
+                <a href="https://hkeepl.github.io/categories/" title="分类">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hkeepl.github.io/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hkeepl.github.io/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hkeepl.github.io/search/" title="搜索 (Alt &#43; /)" accesskey=/>
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hkeepl.github.io/about/" title="关于">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
 
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="HeYin"
-      src="/resources/images/avatar.jpg">
-  <p class="site-author-name" itemprop="name">HeYin</p>
-  <div class="site-description" itemprop="description">人生如有幽约在身，不敢怠慢。</div>
-</div>
-  <div class="links-of-author site-overview-item animated">
-      <span class="links-of-author-item">
-        <a href="https://github.com/hkeepl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hkeepl" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:hkeepl@outlook.com" title="E-Mail → mailto:hkeepl@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fas fa-rss fa-fw"></i></a>
-      </span>
+<article class="first-entry"> 
+  <header class="entry-header">
+    <h2>Installation | Update
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Read Install and Update instructions here</p>
   </div>
+  <footer class="entry-footer"><span title='2021-01-20 00:00:00 +0000 UTC'>一月 20, 2021</span>&nbsp;·&nbsp;Aditya Telange</footer>
+  <a class="entry-link" aria-label="post link to Installation | Update" href="https://hkeepl.github.io/posts/papermod/papermod-installation/"></a>
+</article>
 
-
-
-        </div>
-      </div>
-    </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
-
-    
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Features
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Learn About All Features in PaperMod</p>
   </div>
-  <div class="reading-progress-bar"></div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-    <div class="main-inner index posts-expand">
-
-	    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://hkeepl.github.io/posts/61783">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/resources/images/avatar.jpg">
-      <meta itemprop="name" content="HeYin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="故乡">
-      <meta itemprop="description" content="人生如有幽约在身，不敢怠慢。">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 故乡">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/61783" class="post-title-link" itemprop="url">使用QFileDialog选择多文件夹</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-08-14 13:13:48" itemprop="dateCreated datePublished" datetime="2022-08-14T13:13:48+08:00">2022-08-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-28 16:11:53" itemprop="dateModified" datetime="2022-08-28T16:11:53+08:00">2022-08-28</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>用户希望在界面上可以选择多个文件夹作为应用程序的数据输入，但是<code>QFileDialog</code>不支持该功能，使用<code>QFileDialog</code>只能够选择单个文件夹，或者一个文件夹下的多个文件。为了实现这个功能，搜索了一些网页，最终得以实现，下面对这个实现过程做个记录。</p>
-          <!--noindex-->
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-	    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://hkeepl.github.io/posts/55693">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/resources/images/avatar.jpg">
-      <meta itemprop="name" content="HeYin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="故乡">
-      <meta itemprop="description" content="人生如有幽约在身，不敢怠慢。">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 故乡">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/55693" class="post-title-link" itemprop="url">解决从GitHub上传代码总是失败的问题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-23 09:02:20" itemprop="dateCreated datePublished" datetime="2022-07-23T09:02:20+08:00">2022-07-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-28 16:11:53" itemprop="dateModified" datetime="2022-08-28T16:11:53+08:00">2022-08-28</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在国内，GitHub本来可能上不了，即使上得了速度也很慢。这里的解决的问题是：开了VPN后，也经常上传失败。这里对解决的流程做一记录，方便查阅。</p>
-          <!--noindex-->
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-	    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://hkeepl.github.io/posts/11227">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/resources/images/avatar.jpg">
-      <meta itemprop="name" content="HeYin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="故乡">
-      <meta itemprop="description" content="人生如有幽约在身，不敢怠慢。">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 故乡">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/11227" class="post-title-link" itemprop="url">在CPack中使用windeployqt</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-23 08:56:48" itemprop="dateCreated datePublished" datetime="2022-07-23T08:56:48+08:00">2022-07-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-28 16:11:53" itemprop="dateModified" datetime="2022-08-28T16:11:53+08:00">2022-08-28</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Qt是一个非常优秀的跨平台C++应用程序开发工具包，CMake&#x2F;CPack 是一款非常出色的C++应用程序构建系统（基本上目前也已经成为C++构建系统的标准了）。它们两个可以很好的结合在一起，而且我在很多项目中也已经使用了它们。然而，使用CPack部署包含Qt的项目，却并非易事。这篇文章将描述我是怎么尝试解决这个问题的。</p>
-          <!--noindex-->
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-	    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://hkeepl.github.io/posts/61860">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/resources/images/avatar.jpg">
-      <meta itemprop="name" content="HeYin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="故乡">
-      <meta itemprop="description" content="人生如有幽约在身，不敢怠慢。">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 故乡">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/61860" class="post-title-link" itemprop="url">使用CMake和VSCode开发C++</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-16 15:35:21" itemprop="dateCreated datePublished" datetime="2022-07-16T15:35:21+08:00">2022-07-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-28 16:11:53" itemprop="dateModified" datetime="2022-08-28T16:11:53+08:00">2022-08-28</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>一直以来我都是把 VSCode 当作一个文本编辑器，查看、编辑文本用。突然有一天发现在公司电脑上用 VSCode 编写代码不会被加密，又因为使用 CMake 编译 Qt 工程时需要文件是不加密的（应该是 moc 程序没有加入到公司加密程序列表里，只要头文件中有 <code>Q_OBJECT</code> 的声明，就不行），于是考虑在 VSCode 中编写代码，利用插件生成 VS 工程，编译代码，调试程序等等一些过程。</p>
-          <!--noindex-->
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-	    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://hkeepl.github.io/posts/43474">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/resources/images/avatar.jpg">
-      <meta itemprop="name" content="HeYin">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="故乡">
-      <meta itemprop="description" content="人生如有幽约在身，不敢怠慢。">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 故乡">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/43474" class="post-title-link" itemprop="url">将博客站点添加到搜索引擎</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-16 09:37:03" itemprop="dateCreated datePublished" datetime="2022-07-16T09:37:03+08:00">2022-07-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-28 16:11:53" itemprop="dateModified" datetime="2022-08-28T16:11:53+08:00">2022-08-28</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>既然做了个人博客网站，写了博文，自然是希望能够被搜索引擎检索到的，下面记录了我的设置过程。</p>
-          <!--noindex-->
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-
-<div class="copyright">
-  &copy; 2020 – 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">HeYin</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  <footer class="entry-footer"><span title='2021-01-20 00:00:00 +0000 UTC'>一月 20, 2021</span>&nbsp;·&nbsp;Aditya Telange</footer>
+  <a class="entry-link" aria-label="post link to Features" href="https://hkeepl.github.io/posts/papermod/papermod-features/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" srcset="https://hkeepl.github.io/posts/markdown-syntax/asserts/fantasy-3077928_huc228654d04069c8065550d6a4e646ad8_1925809_360x0_resize_q75_box.jpg 360w ,https://hkeepl.github.io/posts/markdown-syntax/asserts/fantasy-3077928_huc228654d04069c8065550d6a4e646ad8_1925809_480x0_resize_q75_box.jpg 480w ,https://hkeepl.github.io/posts/markdown-syntax/asserts/fantasy-3077928_huc228654d04069c8065550d6a4e646ad8_1925809_720x0_resize_q75_box.jpg 720w ,https://hkeepl.github.io/posts/markdown-syntax/asserts/fantasy-3077928_huc228654d04069c8065550d6a4e646ad8_1925809_1080x0_resize_q75_box.jpg 1080w ,https://hkeepl.github.io/posts/markdown-syntax/asserts/fantasy-3077928_huc228654d04069c8065550d6a4e646ad8_1925809_1500x0_resize_q75_box.jpg 1500w ,https://hkeepl.github.io/posts/markdown-syntax/asserts/fantasy-3077928.jpg 3840w" 
+            sizes="(min-width: 768px) 720px, 100vw" src="https://hkeepl.github.io/posts/markdown-syntax/asserts/fantasy-3077928.jpg" alt="" 
+            width="3840" height="2160">
+</figure>
+  <header class="entry-header">
+    <h2>Markdown Syntax Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.
+...</p>
   </div>
+  <footer class="entry-footer"><span title='2019-03-11 00:00:00 +0000 UTC'>三月 11, 2019</span>&nbsp;·&nbsp;Hugo Authors</footer>
+  <a class="entry-link" aria-label="post link to Markdown Syntax Guide" href="https://hkeepl.github.io/posts/markdown-syntax/"></a>
+</article>
 
-    </div>
-  </footer>
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Rich Content
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Hugo ships with several Built-in Shortcodes for rich content, along with a Privacy Config and a set of Simple Shortcodes that enable static and no-JS versions of various social media embeds.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2019-03-10 00:00:00 +0000 UTC'>三月 10, 2019</span>&nbsp;·&nbsp;Hugo Authors</footer>
+  <a class="entry-link" aria-label="post link to Rich Content" href="https://hkeepl.github.io/posts/rich-content/"></a>
+</article>
 
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Placeholder Text
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Lorem est tota propiore conpellat pectoribus de pectora summo.
+...</p>
+  </div>
+  <a class="entry-link" aria-label="post link to Placeholder Text" href="https://hkeepl.github.io/posts/placeholder-text/"></a>
+</article>
 
-  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
-<script src="/js/third-party/search/local-search.js"></script>
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Math Typesetting
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Mathematical notation in a Hugo project can be enabled by using third party JavaScript libraries.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2019-03-08 00:00:00 +0000 UTC'>三月 8, 2019</span>&nbsp;·&nbsp;Hugo Authors</footer>
+  <a class="entry-link" aria-label="post link to Math Typesetting" href="https://hkeepl.github.io/posts/math-typesetting/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Emoji Support
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Emoji can be enabled in a Hugo project in a number of ways.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2019-03-05 00:00:00 +0000 UTC'>三月 5, 2019</span>&nbsp;·&nbsp;Hugo Authors</footer>
+  <a class="entry-link" aria-label="post link to Emoji Support" href="https://hkeepl.github.io/posts/emoji-support/"></a>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2023 <a href="https://hkeepl.github.io/">hkeepl&#39;s blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+<script>
+  document.getElementById("theme-toggle").addEventListener("click", () => {
+    const iframe = document.querySelector(".utterances-frame");
+    const message = {
+      type: "set-theme",
+      theme:
+        localStorage.getItem("pref-theme") === "light"
+          ? "github-dark"
+          : "github-light",
+    };
+    iframe?.contentWindow.postMessage(message, "https://utteranc.es");
+  });
+</script>
 
 
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
 
-  <script src="/js/third-party/fancybox.js"></script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
 
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
 
-  
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
 
-
-
-
-  
-
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
-<script src="/js/third-party/math/mathjax.js"></script>
-
-
-<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"hkeepl/hkeepl.github.io","issue_term":"pathname","theme":"preferred-color-scheme","cdn":"https://utteranc.es/client.js"}</script>
-<script src="/js/third-party/comments/utterances.js"></script>
-
+</script>
 </body>
+
 </html>
