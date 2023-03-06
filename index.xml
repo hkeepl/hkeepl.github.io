@@ -6,43 +6,7 @@
     <description>Recent content on hkeepl&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 06 Jul 2022 15:35:21 +0000</lastBuildDate><atom:link href="https://hkeepl.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Installation | Update</title>
-      <link>https://hkeepl.github.io/posts/papermod/papermod-installation/</link>
-      <pubDate>Wed, 20 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://hkeepl.github.io/posts/papermod/papermod-installation/</guid>
-      <description>Read Install and Update instructions here</description>
-    </item>
-    
-    <item>
-      <title>Features</title>
-      <link>https://hkeepl.github.io/posts/papermod/papermod-features/</link>
-      <pubDate>Wed, 20 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://hkeepl.github.io/posts/papermod/papermod-features/</guid>
-      <description>Learn About All Features in PaperMod</description>
-    </item>
-    
-    <item>
-      <title>分类</title>
-      <link>https://hkeepl.github.io/categories/</link>
-      <pubDate>Sat, 04 Mar 2023 22:30:23 +0800</pubDate>
-      
-      <guid>https://hkeepl.github.io/categories/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>标签</title>
-      <link>https://hkeepl.github.io/tags/</link>
-      <pubDate>Sat, 04 Mar 2023 22:16:55 +0800</pubDate>
-      
-      <guid>https://hkeepl.github.io/tags/</guid>
-      <description></description>
-    </item>
-    
+    <lastBuildDate>Sat, 04 Mar 2023 22:30:23 +0800</lastBuildDate><atom:link href="https://hkeepl.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>关于</title>
       <link>https://hkeepl.github.io/about/</link>
@@ -53,7 +17,16 @@
     </item>
     
     <item>
-      <title>CMake 备忘录</title>
+      <title>使用VSCode和CMake开发C&#43;&#43;程序</title>
+      <link>https://hkeepl.github.io/posts/420002/</link>
+      <pubDate>Sat, 16 Jul 2022 15:35:21 +0000</pubDate>
+      
+      <guid>https://hkeepl.github.io/posts/420002/</guid>
+      <description>一直以来我都是把 VSCode 当作一个文本编辑器，查看、编辑文本用。突然有一天发现在公司电脑上用 VSCode 编写代码不会被加密，又因为使用 CMake 编译 Qt 工程时需要文件是</description>
+    </item>
+    
+    <item>
+      <title>CMake 开发经验</title>
       <link>https://hkeepl.github.io/posts/420001/</link>
       <pubDate>Wed, 06 Jul 2022 15:35:21 +0000</pubDate>
       
