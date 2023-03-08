@@ -60,12 +60,12 @@
 <meta property="og:description" content="一直以来我都是把 VSCode 当作一个文本编辑器，查看、编辑文本用。突然有一天发现在公司电脑上用 VSCode 编写代码不会被加密，又因为使用 CMake 编译 Qt 工程时需要文件是" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hkeepl.github.io/posts/420002/" />
-<meta property="og:image" content="https://hkeepl.github.io/asserts/plugins.png" /><meta property="article:section" content="posts" />
+<meta property="og:image" content="https://hkeepl.github.io/asserts/cover.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-07-16T15:35:21+00:00" />
 <meta property="article:modified_time" content="2022-07-16T15:35:21+00:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://hkeepl.github.io/asserts/plugins.png" />
+<meta name="twitter:image" content="https://hkeepl.github.io/asserts/cover.png" />
 <meta name="twitter:title" content="使用VSCode和CMake开发C&#43;&#43;程序"/>
 <meta name="twitter:description" content="一直以来我都是把 VSCode 当作一个文本编辑器，查看、编辑文本用。突然有一天发现在公司电脑上用 VSCode 编写代码不会被加密，又因为使用 CMake 编译 Qt 工程时需要文件是"/>
 
@@ -103,7 +103,7 @@
   "articleBody": "一直以来我都是把 VSCode 当作一个文本编辑器，查看、编辑文本用。突然有一天发现在公司电脑上用 VSCode 编写代码不会被加密，又因为使用 CMake 编译 Qt 工程时需要文件是不加密的（应该是 moc 程序没有加入到公司加密程序列表里，只要头文件中有 Q_OBJECT 的声明，就不行），于是考虑在 VSCode 中编写代码，利用插件生成 VS 工程，编译代码，调试程序等等一些过程。\n需要安装的软件 Visual Studio。当然也可以选择其他的编译器，比如：mingw。 VSCode CMake 需要安装的 VSCode 插件 C/C++ CMake CMake Tools 编写一个最小的 CMake 工程 # CMakeLists.txt cmake_minimum_required(VERSION 3.18) project(HelloWorld CXX) add_executable(hello-world main.cpp) #include int main(int argc, char *argv[]) { if(argc \u003e 1) { std::cout \u003c\u003c argv[1] \u003c\u003c std::endl; } std::cout \u003c\u003c \"Hello world.\" \u003c\u003c std::endl; } 在 VSCode 中配置程序 在 VSCode 中按下 CTRL+SHIFT+P，选择 CMake 配置，在弹出的对话框中选择编译器，待CMake配置完成后，输出\n注意：VSCode 会自动在当前文件夹下新建一个 build 文件夹，里面用于存放 CMake 的配置输出。\n选择状态栏的 Build 按钮，进行编译\n成功后，我们就可以运行程序了！\n点击下方的 Launch the selecte target，就可以运行程序了（PS，如果有多个可执行文件，也可以在这里选择其他的目标工程运行）。\n在 VSCode 中调式程序 本文的重点来了。我们该怎么在 VSCode 中调试程序呢？\n其实，很简单，借助于 CMake Tools 工具，我们只需要在代码中添加断点，点击任务栏的调试（Debug）按钮就可以进行调试了。\n但是，但是，这种调试方式，我们不能输入任何命令行参数！该怎么办呢？\n答案是：使用 VSCode 的调试配置。\n在 .vscode 文件夹下，新建一个 launch.json 文件，并将下面的内容输入到文件中。\n{ // 使用 IntelliSense 了解相关属性。 // 悬停以查看现有属性的描述。 // 欲了解更多信息，请访问：https://go.microsoft.com/fwlink/?linkid=830387 \"version\": \"0.2.0\", \"configurations\": [ { \"name\": \"(msvc) Launch\", \"type\": \"cppvsdbg\", \"request\": \"launch\", \"program\": \"${command:cmake.launchTargetPath}\", \"args\": [], \"stopAtEntry\": false, \"cwd\": \"${workspaceRoot}\", \"environment\": [ { \"name\": \"PATH\", \"value\": \"${env:PATH}:${command.cmake.getLaunchTargetDirectory}\" } ], \"console\": \"externalTerminal\" } ] } 在菜单栏选择 运行-\u003e启动调试，便可以调试程序了。\n这里，我尝试输入一个参数，即修改上面配置文件的 args字段：\n\"args\": [\"You are welcome.\"], 运行调试程序，输出：\n终于，过程通了！\n参考 CMake Tools for Visual Studio Code documentation ",
   "wordCount" : "798",
   "inLanguage": "zh",
-  "image":"https://hkeepl.github.io/asserts/plugins.png","datePublished": "2022-07-16T15:35:21Z",
+  "image":"https://hkeepl.github.io/asserts/cover.png","datePublished": "2022-07-16T15:35:21Z",
   "dateModified": "2022-07-16T15:35:21Z",
   "author":{
     "@type": "Person",
@@ -211,8 +211,8 @@
 </div>
   </header> 
 <figure class="entry-cover">
-        <img loading="lazy" srcset="https://hkeepl.github.io/posts/420002/asserts/plugins_hu0772bd9677768c5d65f12f5531b4e5e8_193800_360x0_resize_box_3.png 360w ,https://hkeepl.github.io/posts/420002/asserts/plugins_hu0772bd9677768c5d65f12f5531b4e5e8_193800_480x0_resize_box_3.png 480w ,https://hkeepl.github.io/posts/420002/asserts/plugins_hu0772bd9677768c5d65f12f5531b4e5e8_193800_720x0_resize_box_3.png 720w ,https://hkeepl.github.io/posts/420002/asserts/plugins_hu0772bd9677768c5d65f12f5531b4e5e8_193800_1080x0_resize_box_3.png 1080w ,https://hkeepl.github.io/posts/420002/asserts/plugins_hu0772bd9677768c5d65f12f5531b4e5e8_193800_1500x0_resize_box_3.png 1500w ,https://hkeepl.github.io/posts/420002/asserts/plugins.png 1527w" 
-            sizes="(min-width: 768px) 720px, 100vw" src="https://hkeepl.github.io/posts/420002/asserts/plugins.png" alt="" 
+        <img loading="lazy" srcset="https://hkeepl.github.io/posts/420002/asserts/cover_hu0772bd9677768c5d65f12f5531b4e5e8_193800_360x0_resize_box_3.png 360w ,https://hkeepl.github.io/posts/420002/asserts/cover_hu0772bd9677768c5d65f12f5531b4e5e8_193800_480x0_resize_box_3.png 480w ,https://hkeepl.github.io/posts/420002/asserts/cover_hu0772bd9677768c5d65f12f5531b4e5e8_193800_720x0_resize_box_3.png 720w ,https://hkeepl.github.io/posts/420002/asserts/cover_hu0772bd9677768c5d65f12f5531b4e5e8_193800_1080x0_resize_box_3.png 1080w ,https://hkeepl.github.io/posts/420002/asserts/cover_hu0772bd9677768c5d65f12f5531b4e5e8_193800_1500x0_resize_box_3.png 1500w ,https://hkeepl.github.io/posts/420002/asserts/cover.png 1527w" 
+            sizes="(min-width: 768px) 720px, 100vw" src="https://hkeepl.github.io/posts/420002/asserts/cover.png" alt="" 
             width="1527" height="299">
         
 </figure><div class="toc">
