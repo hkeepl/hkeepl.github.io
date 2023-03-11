@@ -40,7 +40,7 @@
       <pubDate>Wed, 06 Jul 2022 15:35:21 +0000</pubDate>
       
       <guid>https://hkeepl.github.io/posts/420001/</guid>
-      <description>CMake是个一个开源的跨平台自动化建构系统，用来管理软件建置的程序，并不依赖于某特定编译器，并可支持多层目录、多个应用程序与多个库。</description>
+      <description>CMake 是一个开源的 C++构建工具生成器，可以很方便的实现跨平台编译，解决 C++库之间的依赖关系。只需要配置 CMakeList.txt 文件就可以实现对 C++源代码构建的控</description>
     </item>
     
   </channel>
