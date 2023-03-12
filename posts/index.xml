@@ -6,7 +6,16 @@
     <description>Recent content in 文章 on hkeepl&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 12 Mar 2023 10:13:48 +0800</lastBuildDate><atom:link href="https://hkeepl.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 12 Mar 2023 16:12:42 +0800</lastBuildDate><atom:link href="https://hkeepl.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在文章元数据中添加分类信息</title>
+      <link>https://hkeepl.github.io/posts/420006/</link>
+      <pubDate>Sun, 12 Mar 2023 16:12:42 +0800</pubDate>
+      
+      <guid>https://hkeepl.github.io/posts/420006/</guid>
+      <description>Hugo PaperMod 主题中文章的标签信息会显示在文章的底部，但是文章的分类信息作为文章的一个重要特征，没有在文章中显示出来。下面我将说明怎么在文章的元数据中</description>
+    </item>
+    
     <item>
       <title>Hugo添加Admonition功能</title>
       <link>https://hkeepl.github.io/posts/420005/</link>
