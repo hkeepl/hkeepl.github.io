@@ -103,8 +103,8 @@
   "keywords": [
     "Hugo", "PaperMod"
   ],
-  "articleBody": "Hugo PaperMod 主题中文章的标签信息会显示在文章的底部，但是文章的分类信息作为文章的一个重要特征，没有在文章中显示出来。下面我将说明怎么在文章的元数据中显示分类信息，并且对每个分类添加一个到该分类的超链接。\n复制主题文件夹下的 single.html （路径：themes\\PaperMod\\layouts_default）到网站文件夹下（如果没有，新建目录：layouts_default） 在 layouts_default\\single.html 文件中，找到 所在的位置，然后在原内容下追加添加分类信息的元数据 \u003cdiv class=\"post-meta\"\u003e {{- partial \"post_meta.html\" . -}} {{- partial \"translation_list.html\" . -}} {{- partial \"edit_post.html\" . -}} {{- partial \"post_canonical.html\" . -}} {{- $categories := .Language.Params.Taxonomies.category | default \"categories\"}} {{- $cnt := 0 }} {{- range ($.GetTerms $categories) }} {{- $cnt = add $cnt 1 }} {{- end }} {{- if gt $cnt 0 }} {{- $i := 0 }} \u003cdiv class=\"meta-item\"\u003e\u0026nbsp·\u0026nbsp {{- range ($.GetTerms $categories) }} \u003ca href=\"{{ .Permalink }}\"\u003e{{ .LinkTitle }}\u003c/a\u003e {{ $i = add $i 1 }} {{- if lt $i $cnt}} \u003cspan\u003e,\u003c/span\u003e {{- end }} {{- end }} \u003c/div\u003e {{- end }} \u003c/div\u003e ",
-  "wordCount" : "412",
+  "articleBody": "Hugo PaperMod 主题中文章的标签信息会显示在文章的底部，但是文章的分类信息作为文章的一个重要特征，没有在文章中显示出来。下面我将说明怎么在文章的元数据中显示分类信息，并且对每个分类添加一个到该分类的超链接。\n复制主题文件夹下的 single.html （路径：themes\\PaperMod\\layouts\\_default）到网站文件夹下（如果没有，新建目录：layouts\\_default） 在 layouts\\_default\\single.html 文件中，找到 所在的位置，然后在原内容下追加添加分类信息的代码 \u003cdiv class=\"post-meta\"\u003e {{- partial \"post_meta.html\" . -}} {{- partial \"translation_list.html\" . -}} {{- partial \"edit_post.html\" . -}} {{- partial \"post_canonical.html\" . -}} {{- $categories := .Language.Params.Taxonomies.category | default \"categories\"}} {{- $cnt := 0 }} {{- range ($.GetTerms $categories) }} {{- $cnt = add $cnt 1 }} {{- end }} {{- if gt $cnt 0 }} {{- $i := 0 }} \u003cdiv class=\"meta-item\"\u003e\u0026nbsp·\u0026nbsp {{- range ($.GetTerms $categories) }} \u003ca href=\"{{ .Permalink }}\"\u003e{{ .LinkTitle }}\u003c/a\u003e {{ $i = add $i 1 }} {{- if lt $i $cnt}} \u003cspan\u003e,\u003c/span\u003e {{- end }} {{- end }} \u003c/div\u003e {{- end }} \u003c/div\u003e ",
+  "wordCount" : "413",
   "inLanguage": "zh",
   "image":"https://hkeepl.github.io/asserts/cover.png","datePublished": "2023-03-12T16:12:42+08:00",
   "dateModified": "2023-03-12T16:12:42+08:00",
@@ -234,8 +234,8 @@
   <div class="post-content"><p>Hugo PaperMod 主题中文章的标签信息会显示在文章的底部，但是文章的分类信息作为文章的一个重要特征，没有在文章中显示出来。下面我将说明怎么在文章的元数据中显示分类信息，并且对每个分类添加一个到该分类的超链接。</p>
 <!-- raw HTML omitted -->
 <ol>
-<li>复制主题文件夹下的 single.html （路径：themes\PaperMod\layouts_default）到网站文件夹下（如果没有，新建目录：layouts_default）</li>
-<li>在 layouts_default\single.html 文件中，找到 <code>&lt;div class=&quot;post-meta&quot;&gt;</code> 所在的位置，然后在原内容下追加添加分类信息的元数据</li>
+<li>复制主题文件夹下的 single.html （路径：themes\PaperMod\layouts\_default）到网站文件夹下（如果没有，新建目录：layouts\_default）</li>
+<li>在 layouts\_default\single.html 文件中，找到 <code>&lt;div class=&quot;post-meta&quot;&gt;</code> 所在的位置，然后在原内容下追加添加分类信息的代码</li>
 </ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post-meta&#34;</span>&gt;
 </span></span><span style="display:flex;"><span>  {{- partial &#34;post_meta.html&#34; . -}} {{- partial &#34;translation_list.html&#34; . -}}
