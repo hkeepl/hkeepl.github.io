@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Hugo on hkeepl&#39;s blog</title>
+    <link>https://hkeepl.github.io/tags/hugo/</link>
+    <description>Recent content in Hugo on hkeepl&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 12 Mar 2023 10:13:48 +0800</lastBuildDate><atom:link href="https://hkeepl.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo添加Admonition功能</title>
+      <link>https://hkeepl.github.io/posts/420005/</link>
+      <pubDate>Sun, 12 Mar 2023 10:13:48 +0800</pubDate>
+      
+      <guid>https://hkeepl.github.io/posts/420005/</guid>
+      <description>Admonition(警告，加重点) 是指在文档中用来提供额外信息、注意事项、警告或提示的一种结构化的文本格式。在 Hugo 中添加 Admonition</description>
+    </item>
+    
+  </channel>
+</rss>

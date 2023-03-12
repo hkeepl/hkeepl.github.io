@@ -6,7 +6,16 @@
     <description>Recent content on hkeepl&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 08 Mar 2023 20:54:44 +0800</lastBuildDate><atom:link href="https://hkeepl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 12 Mar 2023 10:13:48 +0800</lastBuildDate><atom:link href="https://hkeepl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo添加Admonition功能</title>
+      <link>https://hkeepl.github.io/posts/420005/</link>
+      <pubDate>Sun, 12 Mar 2023 10:13:48 +0800</pubDate>
+      
+      <guid>https://hkeepl.github.io/posts/420005/</guid>
+      <description>Admonition(警告，加重点) 是指在文档中用来提供额外信息、注意事项、警告或提示的一种结构化的文本格式。在 Hugo 中添加 Admonition</description>
+    </item>
+    
     <item>
       <title>使用 Visual Studio 开发程序时的字符串编码问题</title>
       <link>https://hkeepl.github.io/posts/420004/</link>
