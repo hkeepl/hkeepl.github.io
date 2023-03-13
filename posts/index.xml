@@ -6,7 +6,16 @@
     <description>Recent content in 文章 on hkeepl&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 12 Mar 2023 16:12:42 +0800</lastBuildDate><atom:link href="https://hkeepl.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Mar 2023 22:48:04 +0800</lastBuildDate><atom:link href="https://hkeepl.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo常见问题集锦</title>
+      <link>https://hkeepl.github.io/posts/420007/</link>
+      <pubDate>Mon, 13 Mar 2023 22:48:04 +0800</pubDate>
+      
+      <guid>https://hkeepl.github.io/posts/420007/</guid>
+      <description>使用相对路径插入图片 hugo new posts/my-new-post/index.md 将文章创建成一个文件夹，文章的源文件就是这个 index.md，在这个文件加下我们可以新建一个 asserts目录，用</description>
+    </item>
+    
     <item>
       <title>在文章元数据中添加分类信息</title>
       <link>https://hkeepl.github.io/posts/420006/</link>
