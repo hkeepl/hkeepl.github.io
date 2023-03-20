@@ -6,7 +6,16 @@
     <description>Recent content in 软件开发 on hkeepl&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 08 Mar 2023 20:54:44 +0800</lastBuildDate><atom:link href="https://hkeepl.github.io/categories/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Mar 2023 22:39:40 +0800</lastBuildDate><atom:link href="https://hkeepl.github.io/categories/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>QButtonGroup中不选中任何互斥的按钮</title>
+      <link>https://hkeepl.github.io/posts/420008/</link>
+      <pubDate>Mon, 20 Mar 2023 22:39:40 +0800</pubDate>
+      
+      <guid>https://hkeepl.github.io/posts/420008/</guid>
+      <description>经常我们会有这样的需求，我们有一些按钮，它们之间是互斥的，也就是说同一时间只有一个被按下。我们可以使用 QButtonGroup 的 setExclusive 实现这个功能。 但是有时我们在这个</description>
+    </item>
+    
     <item>
       <title>使用 Visual Studio 开发程序时的字符串编码问题</title>
       <link>https://hkeepl.github.io/posts/420004/</link>
