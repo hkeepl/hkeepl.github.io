@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>标签 on hkeepl&#39;s blog</title>
+    <link>https://hkeepl.github.io/zh/tags/</link>
+    <description>Recent content in 标签 on hkeepl&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sat, 04 Mar 2023 22:16:55 +0800</lastBuildDate><atom:link href="https://hkeepl.github.io/zh/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Qt</title>
+      <link>https://hkeepl.github.io/zh/tags/qt/</link>
+      <pubDate>Mon, 20 Mar 2023 22:39:40 +0800</pubDate>
+      
+      <guid>https://hkeepl.github.io/zh/tags/qt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>https://hkeepl.github.io/zh/tags/hugo/</link>
+      <pubDate>Mon, 13 Mar 2023 22:48:04 +0800</pubDate>
+      
+      <guid>https://hkeepl.github.io/zh/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PaperMod</title>
+      <link>https://hkeepl.github.io/zh/tags/papermod/</link>
+      <pubDate>Sun, 12 Mar 2023 16:12:42 +0800</pubDate>
+      
+      <guid>https://hkeepl.github.io/zh/tags/papermod/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>https://hkeepl.github.io/zh/tags/c&#43;&#43;/</link>
+      <pubDate>Wed, 08 Mar 2023 20:54:44 +0800</pubDate>
+      
+      <guid>https://hkeepl.github.io/zh/tags/c&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Visual Studio</title>
+      <link>https://hkeepl.github.io/zh/tags/visual-studio/</link>
+      <pubDate>Wed, 08 Mar 2023 20:54:44 +0800</pubDate>
+      
+      <guid>https://hkeepl.github.io/zh/tags/visual-studio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>字符串编码</title>
+      <link>https://hkeepl.github.io/zh/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E7%A0%81/</link>
+      <pubDate>Wed, 08 Mar 2023 20:54:44 +0800</pubDate>
+      
+      <guid>https://hkeepl.github.io/zh/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E7%A0%81/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SVN</title>
+      <link>https://hkeepl.github.io/zh/tags/svn/</link>
+      <pubDate>Tue, 07 Mar 2023 22:02:50 +0800</pubDate>
+      
+      <guid>https://hkeepl.github.io/zh/tags/svn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CMake</title>
+      <link>https://hkeepl.github.io/zh/tags/cmake/</link>
+      <pubDate>Sat, 16 Jul 2022 15:35:21 +0000</pubDate>
+      
+      <guid>https://hkeepl.github.io/zh/tags/cmake/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

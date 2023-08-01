@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>在文章元数据中添加分类信息 | hkeepl&#39;s blog</title>
+<meta name="keywords" content="Hugo, PaperMod">
+<meta name="description" content="Hugo PaperMod 主题中文章的标签信息会显示在文章的底部，但是文章的分类信息作为文章的一个重要特征，没有在文章中显示出来。下面我将说明怎么在文章的元数据中">
+<meta name="author" content="hkeepl">
+<link rel="canonical" href="https://hkeepl.github.io/zh/posts/420006/">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <meta name="referrer" content="no-referrer-when-downgrade">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b610dd52334f1876999a4a6b833e55aaaa5b86c22e3508446eb3c303c996e450.css" integrity="sha256-thDdUjNPGHaZmkprgz5VqqpbhsIuNQhEbrPDA8mW5FA=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://hkeepl.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hkeepl.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hkeepl.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://hkeepl.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://hkeepl.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="在文章元数据中添加分类信息" />
+<meta property="og:description" content="Hugo PaperMod 主题中文章的标签信息会显示在文章的底部，但是文章的分类信息作为文章的一个重要特征，没有在文章中显示出来。下面我将说明怎么在文章的元数据中" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hkeepl.github.io/zh/posts/420006/" />
+<meta property="og:image" content="https://hkeepl.github.io/asserts/cover.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-12T16:12:42+08:00" />
+<meta property="article:modified_time" content="2023-03-12T16:12:42+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://hkeepl.github.io/asserts/cover.png" />
+<meta name="twitter:title" content="在文章元数据中添加分类信息"/>
+<meta name="twitter:description" content="Hugo PaperMod 主题中文章的标签信息会显示在文章的底部，但是文章的分类信息作为文章的一个重要特征，没有在文章中显示出来。下面我将说明怎么在文章的元数据中"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "文章",
+      "item": "https://hkeepl.github.io/zh/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "在文章元数据中添加分类信息",
+      "item": "https://hkeepl.github.io/zh/posts/420006/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "在文章元数据中添加分类信息",
+  "name": "在文章元数据中添加分类信息",
+  "description": "Hugo PaperMod 主题中文章的标签信息会显示在文章的底部，但是文章的分类信息作为文章的一个重要特征，没有在文章中显示出来。下面我将说明怎么在文章的元数据中",
+  "keywords": [
+    "Hugo", "PaperMod"
+  ],
+  "articleBody": "Hugo PaperMod 主题中文章的标签信息会显示在文章的底部，但是文章的分类信息作为文章的一个重要特征，没有在文章中显示出来。下面我将说明怎么在文章的元数据中显示分类信息，并且对每个分类添加一个到该分类的超链接。\n复制主题文件夹下的 single.html （路径：themes\\PaperMod\\layouts\\_default）到网站文件夹下（如果没有，新建目录：layouts\\_default） 在 layouts\\_default\\single.html 文件中，找到 所在的位置，然后在原内容下追加添加分类信息的代码 \u003cdiv class=\"post-meta\"\u003e {{- partial \"post_meta.html\" . -}} {{- partial \"translation_list.html\" . -}} {{- partial \"edit_post.html\" . -}} {{- partial \"post_canonical.html\" . -}} {{- $categories := .Language.Params.Taxonomies.category | default \"categories\"}} {{- $cnt := 0 }} {{- range ($.GetTerms $categories) }} {{- $cnt = add $cnt 1 }} {{- end }} {{- if gt $cnt 0 }} {{- $i := 0 }} \u003cdiv class=\"meta-item\"\u003e\u0026nbsp·\u0026nbsp {{- range ($.GetTerms $categories) }} \u003ca href=\"{{ .Permalink }}\"\u003e{{ .LinkTitle }}\u003c/a\u003e {{ $i = add $i 1 }} {{- if lt $i $cnt}} \u003cspan\u003e,\u003c/span\u003e {{- end }} {{- end }} \u003c/div\u003e {{- end }} \u003c/div\u003e ",
+  "wordCount" : "413",
+  "inLanguage": "zh",
+  "image":"https://hkeepl.github.io/asserts/cover.png","datePublished": "2023-03-12T16:12:42+08:00",
+  "dateModified": "2023-03-12T16:12:42+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "hkeepl"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hkeepl.github.io/zh/posts/420006/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "hkeepl's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hkeepl.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hkeepl.github.io/zh/" accesskey="h" title="hkeepl&#39;s blog (Alt + H)">hkeepl&#39;s blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hkeepl.github.io/zh/posts/" title="文章">
+                    <span>文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hkeepl.github.io/zh/categories/" title="分类">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hkeepl.github.io/zh/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hkeepl.github.io/zh/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hkeepl.github.io/zh/about/" title="关于">
+                    <span>关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hkeepl.github.io/zh/search/" title="搜索 (Alt &#43; /)" accesskey=/>
+                    <span>搜索</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://hkeepl.github.io/zh/">主页</a>&nbsp;»&nbsp;<a href="https://hkeepl.github.io/zh/posts/">文章</a></div>
+    <h1 class="post-title">
+      在文章元数据中添加分类信息
+    </h1>
+    <div class="post-meta"><span title='2023-03-12 16:12:42 +0800 +0800'>三月 12, 2023</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;hkeepl
+
+
+        <div class="meta-item">&nbsp·&nbsp
+            <a href="https://hkeepl.github.io/zh/categories/%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF/">网络技术</a>
+            
+        </div>
+
+      
+      <div class="meta-item">&nbsp·&nbsp
+        <span id="busuanzi_container_page_pv">本文阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+      </div>
+
+    </div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="lazy" srcset="https://hkeepl.github.io/zh/posts/420006/asserts/cover_hu9e4fb562ed388c5e8ea5752e95bebba1_50936_360x0_resize_box_3.png 360w ,https://hkeepl.github.io/zh/posts/420006/asserts/cover_hu9e4fb562ed388c5e8ea5752e95bebba1_50936_480x0_resize_box_3.png 480w ,https://hkeepl.github.io/zh/posts/420006/asserts/cover_hu9e4fb562ed388c5e8ea5752e95bebba1_50936_720x0_resize_box_3.png 720w ,https://hkeepl.github.io/zh/posts/420006/asserts/cover.png 900w" 
+            sizes="(min-width: 768px) 720px, 100vw" src="https://hkeepl.github.io/zh/posts/420006/asserts/cover.png" alt="" 
+            width="900" height="500">
+        
+</figure>
+
+  <div class="post-content"><p>Hugo PaperMod 主题中文章的标签信息会显示在文章的底部，但是文章的分类信息作为文章的一个重要特征，没有在文章中显示出来。下面我将说明怎么在文章的元数据中显示分类信息，并且对每个分类添加一个到该分类的超链接。</p>
+<!-- raw HTML omitted -->
+<ol>
+<li>复制主题文件夹下的 single.html （路径：themes\PaperMod\layouts\_default）到网站文件夹下（如果没有，新建目录：layouts\_default）</li>
+<li>在 layouts\_default\single.html 文件中，找到 <code>&lt;div class=&quot;post-meta&quot;&gt;</code> 所在的位置，然后在原内容下追加添加分类信息的代码</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post-meta&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  {{- partial &#34;post_meta.html&#34; . -}} {{- partial &#34;translation_list.html&#34; . -}}
+</span></span><span style="display:flex;"><span>  {{- partial &#34;edit_post.html&#34; . -}} {{- partial &#34;post_canonical.html&#34; . -}}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">&lt;!-- 在元数据中显示分类信息 --&gt;</span>
+</span></span><span style="display:flex;"><span>  {{- $categories := .Language.Params.Taxonomies.category | default &#34;categories&#34;}} 
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">&lt;!-- 统计分类个数 --&gt;</span>
+</span></span><span style="display:flex;"><span>  {{- $cnt := 0 }} 
+</span></span><span style="display:flex;"><span>  {{- range ($.GetTerms $categories) }} 
+</span></span><span style="display:flex;"><span>    {{- $cnt = add $cnt 1 }} 
+</span></span><span style="display:flex;"><span>  {{- end }} 
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">&lt;!-- 只有文章有分类信息时才显示 --&gt;</span>
+</span></span><span style="display:flex;"><span>  {{- if gt $cnt 0 }} 
+</span></span><span style="display:flex;"><span>    {{- $i := 0 }}
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;meta-item&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">&amp;</span>nbsp·<span style="color:#960050;background-color:#1e0010">&amp;</span>nbsp 
+</span></span><span style="display:flex;"><span>        {{- range ($.GetTerms $categories) }}
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ .Permalink }}&#34;</span>&gt;{{ .LinkTitle }}&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>            {{ $i = add $i 1 }} 
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">&lt;!-- 不是最后一个类别时，添加逗号分割类别 --&gt;</span>
+</span></span><span style="display:flex;"><span>            {{- if lt $i $cnt}}
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">span</span>&gt;,&lt;/<span style="color:#f92672">span</span>&gt;
+</span></span><span style="display:flex;"><span>            {{- end }} 
+</span></span><span style="display:flex;"><span>        {{- end }}
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  {{- end }}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hkeepl.github.io/zh/tags/hugo/">Hugo</a></li>
+      <li><a href="https://hkeepl.github.io/zh/tags/papermod/">PaperMod</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://hkeepl.github.io/zh/posts/420007/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>Hugo常见问题集锦</span>
+  </a>
+  <a class="next" href="https://hkeepl.github.io/zh/posts/420005/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>Hugo添加Admonition功能</span>
+  </a>
+</nav>
+
+  </footer><script>
+    (function () {
+      let theme = localStorage.getItem("pref-theme");
+      
+      if (theme) {
+        theme = theme === "dark" ? "github-dark" : "github-light";
+      }
+      
+      else {
+        theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "github-dark"
+          : "github-light";
+      }
+      const comment = document.createElement("script");
+      comment.src = "https://utteranc.es/client.js";
+      comment.setAttribute("repo", "hkeepl/github-pages-comments");
+      comment.setAttribute("issue-term", "pathname");
+      comment.setAttribute("theme", theme);
+      comment.crossorigin = "anonymous";
+      comment.async = true;
+      document.body.appendChild(comment);
+    })();
+  </script>
+  
+</article>
+    </main>
+    
+<footer class="footer">
+    
+    <span>&copy; 2020 - 2023 <a href="https://hkeepl.github.io/zh/license/">hkeepl&#39;s blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+
+    
+    <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+    </span>
+    <span id="busuanzi_container_site_uv">
+        本站访客数<span id="busuanzi_value_site_uv"></span>人次
+    </span>
+    </div></footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+<script>
+  document.getElementById("theme-toggle").addEventListener("click", () => {
+    const iframe = document.querySelector(".utterances-frame");
+    const message = {
+      type: "set-theme",
+      theme:
+        localStorage.getItem("pref-theme") === "light"
+          ? "github-dark"
+          : "github-light",
+    };
+    iframe?.contentWindow.postMessage(message, "https://utteranc.es");
+  });
+</script>
+
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>字符串编码 on hkeepl&#39;s blog</title>
+    <link>https://hkeepl.github.io/zh/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E7%A0%81/</link>
+    <description>Recent content in 字符串编码 on hkeepl&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Wed, 08 Mar 2023 20:54:44 +0800</lastBuildDate><atom:link href="https://hkeepl.github.io/zh/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E7%A0%81/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Visual Studio 开发程序时的字符串编码问题</title>
+      <link>https://hkeepl.github.io/zh/posts/420004/</link>
+      <pubDate>Wed, 08 Mar 2023 20:54:44 +0800</pubDate>
+      
+      <guid>https://hkeepl.github.io/zh/posts/420004/</guid>
+      <description>在程序源文件里输入了一个字符串你好,</description>
+    </item>
+    
+  </channel>
+</rss>
