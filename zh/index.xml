@@ -13,7 +13,8 @@
       <pubDate>Mon, 20 Mar 2023 22:39:40 +0800</pubDate>
       
       <guid>https://hkeepl.github.io/zh/posts/420008/</guid>
-      <description>经常我们会有这样的需求，我们有一些按钮，它们之间是互斥的，也就是说同一时间只有一个被按下。我们可以使用 QButtonGroup 的 setExclusive 实现这个功能。 但是有时我们在这个</description>
+      <description>&lt;p&gt;经常我们会有这样的需求，我们有一些按钮，它们之间是互斥的，也就是说同一时间只有一个被按下。我们可以使用 QButtonGroup 的 setExclusive 实现这个功能。&lt;/p&gt;
+&lt;p&gt;但是有时我们在这个基础上，还希望所有的这些按钮都不被按下，就像 MATLAB 画图工具里的放大、缩小和移动按钮一样。但是很不幸，通过 QButtonGroup 好像很难做到这一点。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -22,7 +23,9 @@
       <pubDate>Mon, 13 Mar 2023 22:48:04 +0800</pubDate>
       
       <guid>https://hkeepl.github.io/zh/posts/420007/</guid>
-      <description>使用相对路径插入图片 hugo new posts/my-new-post/index.md 将文章创建成一个文件夹，文章的源文件就是这个 index.md，在这个文件加下我们可以新建一个 asserts目录，用</description>
+      <description>&lt;h3 id=&#34;使用相对路径插入图片&#34;&gt;使用相对路径插入图片&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo new posts/my-new-post/index.md
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;将文章创建成一个文件夹，文章的源文件就是这个 &lt;code&gt;index.md&lt;/code&gt;，在这个文件加下我们可以新建一个 &lt;code&gt;asserts&lt;/code&gt;目录，用来存放附件（如图片），然后再 &lt;code&gt;index.md&lt;/code&gt;中就可以通过相对路径的方式引用这个文件了。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -31,7 +34,30 @@
       <pubDate>Sun, 12 Mar 2023 22:17:27 +0800</pubDate>
       
       <guid>https://hkeepl.github.io/zh/license/</guid>
-      <description>版权——hkeepl.github.io 这个网站上的所有源代码都是根据 MIT 许可证进行许可的。 MIT License Copyright (c) 2020-2022 adityatelange Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation</description>
+      <description>&lt;p&gt;版权——hkeepl.github.io&lt;/p&gt;
+&lt;p&gt;这个网站上的所有源代码都是根据 MIT 许可证进行许可的。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;MIT License
+
+Copyright (c) 2020-2022 adityatelange
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &amp;#34;Software&amp;#34;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &amp;#34;AS IS&amp;#34;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+&lt;/code&gt;&lt;/pr</description>
     </item>
     
     <item>
@@ -40,7 +66,7 @@
       <pubDate>Sun, 12 Mar 2023 16:12:42 +0800</pubDate>
       
       <guid>https://hkeepl.github.io/zh/posts/420006/</guid>
-      <description>Hugo PaperMod 主题中文章的标签信息会显示在文章的底部，但是文章的分类信息作为文章的一个重要特征，没有在文章中显示出来。下面我将说明怎么在文章的元数据中</description>
+      <description>&lt;p&gt;Hugo PaperMod 主题中文章的标签信息会显示在文章的底部，但是文章的分类信息作为文章的一个重要特征，没有在文章中显示出来。下面我将说明怎么在文章的元数据中显示分类信息，并且对每个分类添加一个到该分类的超链接。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -49,7 +75,7 @@
       <pubDate>Sun, 12 Mar 2023 10:13:48 +0800</pubDate>
       
       <guid>https://hkeepl.github.io/zh/posts/420005/</guid>
-      <description>Admonition(警告，加重点) 是指在文档中用来提供额外信息、注意事项、警告或提示的一种结构化的文本格式。在 Hugo 中添加 Admonition</description>
+      <description>&lt;p&gt;Admonition(警告，加重点) 是指在文档中用来提供额外信息、注意事项、警告或提示的一种结构化的文本格式。在 Hugo 中添加 Admonition，可以让读者轻松的阅读我们的文章。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -58,7 +84,8 @@
       <pubDate>Wed, 08 Mar 2023 20:54:44 +0800</pubDate>
       
       <guid>https://hkeepl.github.io/zh/posts/420004/</guid>
-      <description>在程序源文件里输入了一个字符串你好,</description>
+      <description>&lt;p&gt;在程序源文件里输入了一个字符串&lt;code&gt;你好&lt;/code&gt;,&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;</description>
     </item>
     
     <item>
@@ -85,7 +112,7 @@
       <pubDate>Sat, 16 Jul 2022 15:35:21 +0000</pubDate>
       
       <guid>https://hkeepl.github.io/zh/posts/420002/</guid>
-      <description>一直以来我都是把 VSCode 当作一个文本编辑器，查看、编辑文本用。突然有一天发现在公司电脑上用 VSCode 编写代码不会被加密，又因为使用 CMake 编译 Qt 工程时需要文件是</description>
+      <description>&lt;p&gt;一直以来我都是把 VSCode 当作一个文本编辑器，查看、编辑文本用。突然有一天发现在公司电脑上用 VSCode 编写代码不会被加密，又因为使用 CMake 编译 Qt 工程时需要文件是不加密的（应该是 moc 程序没有加入到公司加密程序列表里，只要头文件中有 &lt;code&gt;Q_OBJECT&lt;/code&gt; 的声明，就不行），于是考虑在 VSCode 中编写代码，利用插件生成 VS 工程，编译代码，调试程序等等一些过程。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -94,7 +121,7 @@
       <pubDate>Wed, 06 Jul 2022 15:35:21 +0000</pubDate>
       
       <guid>https://hkeepl.github.io/zh/posts/420001/</guid>
-      <description>CMake 是一个开源的 C++构建工具生成器，可以很方便的实现跨平台编译，解决 C++库之间的依赖关系。只需要配置 CMakeList.txt 文件就可以实现对 C++源代码构建的控</description>
+      <description>&lt;p&gt;CMake 是一个开源的 C++构建工具生成器，可以很方便的实现跨平台编译，解决 C++库之间的依赖关系。只需要配置 CMakeList.txt 文件就可以实现对 C++源代码构建的控制，而且还是库平台，简直太好用。下面记录了一些常用的 CMake 命令。&lt;/p&gt;</description>
     </item>
     
     

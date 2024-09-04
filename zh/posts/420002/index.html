@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>使用VSCode和CMake开发C&#43;&#43;程序 | hkeepl&#39;s blog</title>
 <meta name="keywords" content="CMake, C&#43;&#43;">
-<meta name="description" content="一直以来我都是把 VSCode 当作一个文本编辑器，查看、编辑文本用。突然有一天发现在公司电脑上用 VSCode 编写代码不会被加密，又因为使用 CMake 编译 Qt 工程时需要文件是">
+<meta name="description" content="一直以来我都是把 VSCode 当作一个文本编辑器，查看、编辑文本用。突然有一天发现在公司电脑上用 VSCode 编写代码不会被加密，又因为使用 CMake 编译 Qt 工程时需要文件是不加密的（应该是 moc 程序没有加入到公司加密程序列表里，只要头文件中有 Q_OBJECT 的声明，就不行），于是考虑在 VSCode 中编写代码，利用插件生成 VS 工程，编译代码，调试程序等等一些过程。">
 <meta name="author" content="hkeepl">
 <link rel="canonical" href="https://hkeepl.github.io/zh/posts/420002/">
 
@@ -60,11 +60,8 @@
         }
 
     </style>
-</noscript>
-  
-
-<meta property="og:title" content="使用VSCode和CMake开发C&#43;&#43;程序" />
-<meta property="og:description" content="一直以来我都是把 VSCode 当作一个文本编辑器，查看、编辑文本用。突然有一天发现在公司电脑上用 VSCode 编写代码不会被加密，又因为使用 CMake 编译 Qt 工程时需要文件是" />
+</noscript><meta property="og:title" content="使用VSCode和CMake开发C&#43;&#43;程序" />
+<meta property="og:description" content="一直以来我都是把 VSCode 当作一个文本编辑器，查看、编辑文本用。突然有一天发现在公司电脑上用 VSCode 编写代码不会被加密，又因为使用 CMake 编译 Qt 工程时需要文件是不加密的（应该是 moc 程序没有加入到公司加密程序列表里，只要头文件中有 Q_OBJECT 的声明，就不行），于是考虑在 VSCode 中编写代码，利用插件生成 VS 工程，编译代码，调试程序等等一些过程。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hkeepl.github.io/zh/posts/420002/" />
 <meta property="og:image" content="https://hkeepl.github.io/asserts/cover.png" /><meta property="article:section" content="posts" />
@@ -74,7 +71,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://hkeepl.github.io/asserts/cover.png" />
 <meta name="twitter:title" content="使用VSCode和CMake开发C&#43;&#43;程序"/>
-<meta name="twitter:description" content="一直以来我都是把 VSCode 当作一个文本编辑器，查看、编辑文本用。突然有一天发现在公司电脑上用 VSCode 编写代码不会被加密，又因为使用 CMake 编译 Qt 工程时需要文件是"/>
+<meta name="twitter:description" content="一直以来我都是把 VSCode 当作一个文本编辑器，查看、编辑文本用。突然有一天发现在公司电脑上用 VSCode 编写代码不会被加密，又因为使用 CMake 编译 Qt 工程时需要文件是不加密的（应该是 moc 程序没有加入到公司加密程序列表里，只要头文件中有 Q_OBJECT 的声明，就不行），于是考虑在 VSCode 中编写代码，利用插件生成 VS 工程，编译代码，调试程序等等一些过程。"/>
 
 
 <script type="application/ld+json">
@@ -103,7 +100,7 @@
   "@type": "BlogPosting",
   "headline": "使用VSCode和CMake开发C++程序",
   "name": "使用VSCode和CMake开发C\u002b\u002b程序",
-  "description": "一直以来我都是把 VSCode 当作一个文本编辑器，查看、编辑文本用。突然有一天发现在公司电脑上用 VSCode 编写代码不会被加密，又因为使用 CMake 编译 Qt 工程时需要文件是",
+  "description": "一直以来我都是把 VSCode 当作一个文本编辑器，查看、编辑文本用。突然有一天发现在公司电脑上用 VSCode 编写代码不会被加密，又因为使用 CMake 编译 Qt 工程时需要文件是不加密的（应该是 moc 程序没有加入到公司加密程序列表里，只要头文件中有 Q_OBJECT 的声明，就不行），于是考虑在 VSCode 中编写代码，利用插件生成 VS 工程，编译代码，调试程序等等一些过程。\n",
   "keywords": [
     "CMake", "C++"
   ],

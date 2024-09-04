@@ -13,7 +13,8 @@
       <pubDate>Mon, 20 Mar 2023 22:39:40 +0800</pubDate>
       
       <guid>https://hkeepl.github.io/zh/posts/420008/</guid>
-      <description>经常我们会有这样的需求，我们有一些按钮，它们之间是互斥的，也就是说同一时间只有一个被按下。我们可以使用 QButtonGroup 的 setExclusive 实现这个功能。 但是有时我们在这个</description>
+      <description>&lt;p&gt;经常我们会有这样的需求，我们有一些按钮，它们之间是互斥的，也就是说同一时间只有一个被按下。我们可以使用 QButtonGroup 的 setExclusive 实现这个功能。&lt;/p&gt;
+&lt;p&gt;但是有时我们在这个基础上，还希望所有的这些按钮都不被按下，就像 MATLAB 画图工具里的放大、缩小和移动按钮一样。但是很不幸，通过 QButtonGroup 好像很难做到这一点。&lt;/p&gt;</description>
     </item>
     
   </channel>

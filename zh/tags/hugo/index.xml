@@ -13,7 +13,9 @@
       <pubDate>Mon, 13 Mar 2023 22:48:04 +0800</pubDate>
       
       <guid>https://hkeepl.github.io/zh/posts/420007/</guid>
-      <description>使用相对路径插入图片 hugo new posts/my-new-post/index.md 将文章创建成一个文件夹，文章的源文件就是这个 index.md，在这个文件加下我们可以新建一个 asserts目录，用</description>
+      <description>&lt;h3 id=&#34;使用相对路径插入图片&#34;&gt;使用相对路径插入图片&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo new posts/my-new-post/index.md
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;将文章创建成一个文件夹，文章的源文件就是这个 &lt;code&gt;index.md&lt;/code&gt;，在这个文件加下我们可以新建一个 &lt;code&gt;asserts&lt;/code&gt;目录，用来存放附件（如图片），然后再 &lt;code&gt;index.md&lt;/code&gt;中就可以通过相对路径的方式引用这个文件了。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -22,7 +24,7 @@
       <pubDate>Sun, 12 Mar 2023 16:12:42 +0800</pubDate>
       
       <guid>https://hkeepl.github.io/zh/posts/420006/</guid>
-      <description>Hugo PaperMod 主题中文章的标签信息会显示在文章的底部，但是文章的分类信息作为文章的一个重要特征，没有在文章中显示出来。下面我将说明怎么在文章的元数据中</description>
+      <description>&lt;p&gt;Hugo PaperMod 主题中文章的标签信息会显示在文章的底部，但是文章的分类信息作为文章的一个重要特征，没有在文章中显示出来。下面我将说明怎么在文章的元数据中显示分类信息，并且对每个分类添加一个到该分类的超链接。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -31,7 +33,7 @@
       <pubDate>Sun, 12 Mar 2023 10:13:48 +0800</pubDate>
       
       <guid>https://hkeepl.github.io/zh/posts/420005/</guid>
-      <description>Admonition(警告，加重点) 是指在文档中用来提供额外信息、注意事项、警告或提示的一种结构化的文本格式。在 Hugo 中添加 Admonition</description>
+      <description>&lt;p&gt;Admonition(警告，加重点) 是指在文档中用来提供额外信息、注意事项、警告或提示的一种结构化的文本格式。在 Hugo 中添加 Admonition，可以让读者轻松的阅读我们的文章。&lt;/p&gt;</description>
     </item>
     
   </channel>

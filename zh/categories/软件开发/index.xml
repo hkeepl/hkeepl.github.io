@@ -13,7 +13,8 @@
       <pubDate>Mon, 20 Mar 2023 22:39:40 +0800</pubDate>
       
       <guid>https://hkeepl.github.io/zh/posts/420008/</guid>
-      <description>经常我们会有这样的需求，我们有一些按钮，它们之间是互斥的，也就是说同一时间只有一个被按下。我们可以使用 QButtonGroup 的 setExclusive 实现这个功能。 但是有时我们在这个</description>
+      <description>&lt;p&gt;经常我们会有这样的需求，我们有一些按钮，它们之间是互斥的，也就是说同一时间只有一个被按下。我们可以使用 QButtonGroup 的 setExclusive 实现这个功能。&lt;/p&gt;
+&lt;p&gt;但是有时我们在这个基础上，还希望所有的这些按钮都不被按下，就像 MATLAB 画图工具里的放大、缩小和移动按钮一样。但是很不幸，通过 QButtonGroup 好像很难做到这一点。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -22,7 +23,8 @@
       <pubDate>Wed, 08 Mar 2023 20:54:44 +0800</pubDate>
       
       <guid>https://hkeepl.github.io/zh/posts/420004/</guid>
-      <description>在程序源文件里输入了一个字符串你好,</description>
+      <description>&lt;p&gt;在程序源文件里输入了一个字符串&lt;code&gt;你好&lt;/code&gt;,&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;</description>
     </item>
     
     <item>
@@ -40,7 +42,7 @@
       <pubDate>Sat, 16 Jul 2022 15:35:21 +0000</pubDate>
       
       <guid>https://hkeepl.github.io/zh/posts/420002/</guid>
-      <description>一直以来我都是把 VSCode 当作一个文本编辑器，查看、编辑文本用。突然有一天发现在公司电脑上用 VSCode 编写代码不会被加密，又因为使用 CMake 编译 Qt 工程时需要文件是</description>
+      <description>&lt;p&gt;一直以来我都是把 VSCode 当作一个文本编辑器，查看、编辑文本用。突然有一天发现在公司电脑上用 VSCode 编写代码不会被加密，又因为使用 CMake 编译 Qt 工程时需要文件是不加密的（应该是 moc 程序没有加入到公司加密程序列表里，只要头文件中有 &lt;code&gt;Q_OBJECT&lt;/code&gt; 的声明，就不行），于是考虑在 VSCode 中编写代码，利用插件生成 VS 工程，编译代码，调试程序等等一些过程。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -49,7 +51,7 @@
       <pubDate>Wed, 06 Jul 2022 15:35:21 +0000</pubDate>
       
       <guid>https://hkeepl.github.io/zh/posts/420001/</guid>
-      <description>CMake 是一个开源的 C++构建工具生成器，可以很方便的实现跨平台编译，解决 C++库之间的依赖关系。只需要配置 CMakeList.txt 文件就可以实现对 C++源代码构建的控</description>
+      <description>&lt;p&gt;CMake 是一个开源的 C++构建工具生成器，可以很方便的实现跨平台编译，解决 C++库之间的依赖关系。只需要配置 CMakeList.txt 文件就可以实现对 C++源代码构建的控制，而且还是库平台，简直太好用。下面记录了一些常用的 CMake 命令。&lt;/p&gt;</description>
     </item>
     
   </channel>

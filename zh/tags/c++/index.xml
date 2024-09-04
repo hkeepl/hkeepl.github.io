@@ -13,7 +13,8 @@
       <pubDate>Wed, 08 Mar 2023 20:54:44 +0800</pubDate>
       
       <guid>https://hkeepl.github.io/zh/posts/420004/</guid>
-      <description>在程序源文件里输入了一个字符串你好,</description>
+      <description>&lt;p&gt;在程序源文件里输入了一个字符串&lt;code&gt;你好&lt;/code&gt;,&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;</description>
     </item>
     
     <item>
@@ -22,7 +23,7 @@
       <pubDate>Sat, 16 Jul 2022 15:35:21 +0000</pubDate>
       
       <guid>https://hkeepl.github.io/zh/posts/420002/</guid>
-      <description>一直以来我都是把 VSCode 当作一个文本编辑器，查看、编辑文本用。突然有一天发现在公司电脑上用 VSCode 编写代码不会被加密，又因为使用 CMake 编译 Qt 工程时需要文件是</description>
+      <description>&lt;p&gt;一直以来我都是把 VSCode 当作一个文本编辑器，查看、编辑文本用。突然有一天发现在公司电脑上用 VSCode 编写代码不会被加密，又因为使用 CMake 编译 Qt 工程时需要文件是不加密的（应该是 moc 程序没有加入到公司加密程序列表里，只要头文件中有 &lt;code&gt;Q_OBJECT&lt;/code&gt; 的声明，就不行），于是考虑在 VSCode 中编写代码，利用插件生成 VS 工程，编译代码，调试程序等等一些过程。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -31,7 +32,7 @@
       <pubDate>Wed, 06 Jul 2022 15:35:21 +0000</pubDate>
       
       <guid>https://hkeepl.github.io/zh/posts/420001/</guid>
-      <description>CMake 是一个开源的 C++构建工具生成器，可以很方便的实现跨平台编译，解决 C++库之间的依赖关系。只需要配置 CMakeList.txt 文件就可以实现对 C++源代码构建的控</description>
+      <description>&lt;p&gt;CMake 是一个开源的 C++构建工具生成器，可以很方便的实现跨平台编译，解决 C++库之间的依赖关系。只需要配置 CMakeList.txt 文件就可以实现对 C++源代码构建的控制，而且还是库平台，简直太好用。下面记录了一些常用的 CMake 命令。&lt;/p&gt;</description>
     </item>
     
   </channel>
